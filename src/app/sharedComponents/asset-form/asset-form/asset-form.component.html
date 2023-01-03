@@ -1,0 +1,20 @@
+<div class="menuStyle" >
+  <div class="menuDivStyle ripple">
+    <!-- <img class="menuStyleIcon" [src]="icon.assets" (click)="showTool();$event.stopPropagation()"> -->
+    
+    <ion-icon class="menuStyleIcon" [src]="icon.assets" (click)="showTool();$event.stopPropagation()"></ion-icon>
+    <!-- <ion-icon class="menuStyleIcon" [src]="imgUrl" (click)="showTool();$event.stopPropagation()"></ion-icon> -->
+  </div>
+</div>
+
+<div *ngIf="showSketchingTool" class="objStyle">
+  <div class="iconStyle" *ngFor="let assetForm of assetFormsList" (click)="selectedAction(assetForm.geometryType,assetForm);$event.stopPropagation()">
+    
+    <img *ngIf = "assetForm.geometryType === 'Point' || assetForm.geometryType == '' " class="imageSize" [src]="assetForm.imageurl" >
+    <!-- <img *ngIf = "assetForm.geometryType == 'Point' || assetForm.geometryType == '' " class="imageSize" [src]="imgUrl"> -->
+    <img *ngIf = "assetForm.geometryType == 'Line' " class="imageSize" [src]="icon.route">
+    <img *ngIf = "assetForm.geometryType == 'Polygon' " class="imageSize" [src]="icon.polygon">
+
+    <p class="assetType">{{assetForm.name}}</p>
+  </div>
+</div>

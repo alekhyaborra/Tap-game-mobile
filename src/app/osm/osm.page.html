@@ -1,0 +1,32 @@
+<div #map id="osm" class="osm-map">
+  <app-sketching-tool *ngIf="fromForm == 'true' && isHistory == false" [isHistory]="isHistory" [toolbarButtonConf]= 'toolbarButtonConf' (selectedMapAction) = selectedMapAction($event)></app-sketching-tool>
+  <app-map-menu *ngIf="isHistory == false && !toolbarButtonConf.drawStarted" [isHistory]="isHistory" [toolbarButtonConf]= 'toolbarButtonConf' (selectedMapAction) = selectedMapAction($event)></app-map-menu>    
+</div>
+ <app-asset-form *ngIf="fromForm == 'true' && isHistory == false" [isHistory]="isHistory" [toolbarButtonConf]= 'toolbarButtonConf' (selectedMapAction) = selectedMapAction($event)></app-asset-form>
+<div id="map-back" ><ion-icon class="backarrow back-button-style" name="arrow-back" color="dark" size="large" (click)="goBack($event)"></ion-icon>
+</div>
+<div class="search-close" (click)="closeAddressSearch();$event.stopPropagation()" *ngIf="addressSearchStatus"><ion-icon name="ios-close-circle-outline" size="large"></ion-icon></div>
+<div *ngIf="showSearch" class="objStyleSearch">  
+  <ion-input class="searchboxStyles" clearInput placeholder = 'Search by asset name'
+  [formControl]="searchControl"
+  [value]="searchValue"
+  (ionChange)="showSearch"></ion-input>
+</div>
+
+<!-- (search)="assetNameSearch($event)" -->
+<div *ngIf="showSearch && assetSearchList.length>0" class="objStyleList">
+ <ion-list class="List searchListItems"> 
+       <ion-item class="alignStyle" *ngFor="let assetObj of assetSearchList">
+        <ion-label>{{ assetObj.label }}</ion-label>
+        </ion-item>
+     </ion-list>
+     <!-- (click)="assetSearch(assetObj)" -->
+   </div>
+<div *ngIf="dragLatLongString">
+  <ion-item lines="full">
+      <ion-label class="text-center">
+        {{dragLatLongString}}
+      </ion-label>
+    </ion-item>
+  <ion-button class="button button-block" expand="block" class="capture-button" (click)="captureLocation()">Capture Location</ion-button>
+</div>

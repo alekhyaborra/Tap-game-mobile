@@ -1,0 +1,28 @@
+<ion-row class="chart-row row-two" *ngIf="DataStatus">
+  <ion-col offset="3">
+    <canvas baseChart [data]="wOChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="doughnutColors"
+      [options]="legend" style="margin-left: 15%;">
+    </canvas>
+    <div class="total-percentage" [ngClass]="{'margin-top-35': sliderType == 0}">{{wOtotalCount}}</div>
+  </ion-col>
+</ion-row>
+<ion-row class="percentage-text-row row-three" *ngIf="DataStatus">
+  <ion-col>
+    <div class="percentage-text-margin"><img [src]="redIcon" class="percentage-icons"><span class="percentage-text">{{displayProperties.assignedStatus}}
+        - {{wOChartData[0]}}</span></div>
+    <div class="percentage-text-margin"><img [src]="greenIcon" class="percentage-icons"><span class="percentage-text">{{displayProperties.inProgressStatus}}
+        - {{wOChartData[1]}}</span></div>
+    <div class="percentage-text-margin"><img [src]="yellowIcon" class="percentage-icons"><span class="percentage-text">{{displayProperties.completedStatus}}
+        - {{wOChartData[2]}}</span></div>
+  </ion-col>
+</ion-row>
+<ion-row align-items-center class="chart-name">
+  <ion-col class="text-ceenter">{{displayProperties.WorkOrders}}</ion-col>
+</ion-row>
+<ion-row *ngIf="loaderStatus" align-items-center class="chart-data-loader"> 
+  <ion-col class="text-ceenter"><ion-spinner name="bubbles"></ion-spinner></ion-col>
+</ion-row>
+
+<ion-row *ngIf="DataES" align-items-center class="chart-data-loader"> 
+  <ion-col class="text-ceenter" (click)="getData()"><ion-icon name="refresh"></ion-icon></ion-col>
+</ion-row>

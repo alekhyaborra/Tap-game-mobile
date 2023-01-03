@@ -1,0 +1,21 @@
+<ion-item-sliding class="grid-position" (swiperight)="swipeRightEvent($event)" (click)="sendNotificationData()">
+  <ion-item >
+    <ion-label>
+      <ion-row class="overflow">
+        <ion-col style="padding-left: 0px;">
+          <!-- <b>Notification Heading</b> -->
+          <b>{{notificationData.title}}</b>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="padding: 0px;">
+          <!-- Notification Body xdopzjg sfd;ga gf;asoirtg s;gois ghs;eojigt -->
+          {{notificationData.notification}}
+          <!-- {{notificationDetails.actionType}} -->
+          <!-- {{notificationData.notificationObject.actionType}}-
+          {{notificationData.notificationObject}} -->
+        </ion-col>
+      </ion-row>
+    </ion-label>
+  </ion-item>
+</ion-item-sliding>

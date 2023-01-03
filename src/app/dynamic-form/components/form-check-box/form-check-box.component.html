@@ -1,0 +1,20 @@
+<ng-container *ngIf="derivedFields.indexOf(config[widgetKey._id]) > -1 ? false : isTable ? true : config[widgetKey.isUnderHeading].length==0?true:config[widgetKey.isUnderHeading]== expendedHeaderId?true:false">
+    <ion-row>
+        <ion-col size="12" padding>
+            <ion-label>{{config[widgetKey.label]}}</ion-label>&nbsp;<span *ngIf="config[widgetKey.isRequired] == true" class="redColor"> *</span>
+        </ion-col>
+    </ion-row>
+    <ion-card [formGroup]="group" class="widget-card">
+        <ion-row *ngFor="let entry of config[widgetKey.options]">
+            <ion-col size="1">
+                <ion-checkbox [disabled]="historyView || config[widgetKey.disabled]?true : false" [checked]="data[this.config[widgetKey._id]]?data[this.config[widgetKey._id]].split(',').indexOf(entry.value) >-1:false"
+                    color="primary" (click)="getSelectedCheckBoxValue(config[widgetKey._id],entry.value)" (ionChange)="selectValueChanged()"></ion-checkbox>
+            </ion-col>
+            <ion-col size="11">
+                <ion-label>{{entry[widgetKey.optionDisplayName]}}</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+    <app-validation [dynamicFormControlRef]="group.get(config[widgetKey._id])">
+    </app-validation>
+</ng-container>

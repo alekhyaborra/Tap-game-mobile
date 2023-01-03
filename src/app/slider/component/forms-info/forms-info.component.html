@@ -1,0 +1,24 @@
+<ion-row class="chart-row row-two" *ngIf="formDataStatus">
+  <ion-col offset="3">
+    <canvas baseChart [data]="formChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="doughnutColors"
+      [options]="legend" style="margin-left: 15%;">
+    </canvas>
+    <div class="total-percentage" [ngClass]="{'margin-top-35': sliderType == 0}" *ngIf="formtotalCount > 0">{{formtotalCount}}</div>
+  </ion-col>
+</ion-row>
+<ion-row class="percentage-text-row row-three" *ngIf="formDataStatus">
+  <ion-col>
+    <div class="percentage-text-margin"><img [src]="redIcon" class="percentage-icons"><span class="percentage-text">{{displayProperties.assignedStatus}}
+        - {{formtotalCount}}</span></div>    
+  </ion-col>
+</ion-row>
+<ion-row align-items-center class="chart-name">
+  <ion-col class="text-ceenter">{{displayProperties.dashboardFormName}}</ion-col>
+</ion-row>
+<ion-row *ngIf="loaderStatus" align-items-center class="chart-data-loader"> 
+  <ion-col class="text-ceenter"><ion-spinner name="bubbles"></ion-spinner></ion-col>
+</ion-row>
+
+<ion-row *ngIf="formDataES" align-items-center class="chart-data-loader"> 
+  <ion-col class="text-ceenter" (click)="getData()"><ion-icon name="refresh"></ion-icon></ion-col>
+</ion-row>

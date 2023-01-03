@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="75" height="75" viewBox="0 0 75 75">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4886f1"/>
+      <stop offset="1" stop-color="#40c1f6"/>
+    </linearGradient>
+    <filter id="Ellipse_54" x="0" y="0" width="75" height="75" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Plus" transform="translate(-328 -607)">
+    <g transform="matrix(1, 0, 0, 1, 328, 607)" filter="url(#Ellipse_54)">
+      <circle id="Ellipse_54-2" data-name="Ellipse 54" cx="28.5" cy="28.5" r="28.5" transform="translate(9 6)" fill="url(#linear-gradient)"/>
+    </g>
+    <text id="_" data-name="+" transform="translate(353 653)" fill="#fff" font-size="40" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">+</tspan></text>
+  </g>
+</svg>

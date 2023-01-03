@@ -1,0 +1,55 @@
+<ion-list class="List" *ngIf="historyListData == false">
+  <ion-card class="history-item" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+    <ion-item lines="full">
+      <img [src]="imageIcons.workOrder" class="history-icon">
+      <ion-label class="label-history">
+        <ion-row class="listRow1" style="height: 34px;">
+          <ion-col size="8" class="listColumn">
+            <span>
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </span>
+          </ion-col>
+          <ion-col size="4" class="listColumn">
+            <span>
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+
+            </span>
+          </ion-col>
+
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-list>
+
+<ion-list class="List">
+  <ion-card class="history-item" *ngFor="let record of historyRecords">
+    <ion-item lines="full">
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      <img [src]="imageIcons.workOrder" class="history-icon">
+      <ion-label class="label-history" (click)="openForm(record[historyKey._id],record[historyKey.recordId],record[historyKey.status])">
+        <ion-row class="listRow1" style="height: 34px;">
+          <ion-col size="8" class="listColumn">
+            <span>{{record[displayKey]}}</span>
+          </ion-col>
+          <ion-col size="4" class="statusColumn">
+            <span>
+              <span>
+                {{record[historyKey.submittedTime] | dateAgo}}
+              </span>
+            </span>
+          </ion-col>
+
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-list>
+<ion-infinite-scroll *ngIf="!stopInfiniteScroll" class="scroll-color" threshold="100px"
+  (ionInfinite)="loadMoreData($event)">
+  <ion-infinite-scroll-content loadingSpinner="circles" loadingText="{{loaderText}}">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+<ion-item *ngIf="historyRecords && historyRecords.length == 0" lines="none" class="noSaved">
+  <ion-text>{{noDataFound}}</ion-text>
+</ion-item>

@@ -1,0 +1,13 @@
+<ion-toolbar color="primary">
+  <ion-title style="left: 75px; right: 75px;">
+      <span style="color: #FFFFFF;">{{ name }}</span>
+  </ion-title>
+  <ion-buttons slot="end">
+          <ion-button style="background-color: #3a7dda;
+              font-size:15px; width: 70px; margin-top: -5px;
+              box-shadow: none;" (click)="closeMeasuringTool()"><ion-icon name="close"></ion-icon></ion-button>
+      </ion-buttons>
+ </ion-toolbar>
+ <div style="margin-top: 0%; margin-bottom: 25%; text-align: center;">
+    <ion-label>{{ distance }} meters</ion-label>
+ </div>

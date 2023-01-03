@@ -1,0 +1,28 @@
+<app-form-header [Header]="settingsHeader" [hideButtons]="hideHeaderButtons" [ellipseList]="ellipsePopoverList">
+</app-form-header>
+
+<ion-content class="content-style">
+  <ion-list class="List">
+    <ion-item-sliding class="sliding-item" *ngFor="let rfList of referenceList" #slidingItem>
+      <ion-item lines="full">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+        <img [src]="imageIcons.forms" class="form-icon">
+        <ion-label class="form-label">
+          <ion-row class="listRow1 form-list-row">
+            <ion-col class="listColumn">
+              <span>{{rfList.name}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option *ngIf="networkStatus" class="sliding-option" (click)="updateReferenceList(rfList)">
+          <ion-icon name="refresh" size="large"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-item *ngIf="referenceList && referenceList.length == 0" lines="none" class="noSaved">
+    <ion-text>{{displayProperties.noDataFound}}</ion-text>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,27 @@
+.itemText{
+    font-size: 14px;
+    color: #a2a2a2;
+}
+.filter-text{
+    text-align:center
+}
+.close-text{
+    text-align:right
+}
+.filter-row{
+    height: 22px;
+    margin-top: 2%;
+}
+.filter-item{
+    border: 1px solid;
+    border-radius: 5px;
+    width: 30%;
+    text-align: center;
+}
+.item-margin{
+    margin-left: 5%;
+}
+.selected-filter{
+    background-color: #4596db;
+    color: white;
+}

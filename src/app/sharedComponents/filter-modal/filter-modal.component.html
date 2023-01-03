@@ -1,0 +1,37 @@
+<ion-content>
+  <ion-toolbar class="filter-toolbar">
+    <ion-row class="filter-toolbar-row">
+      <ion-col (click)="clear()">
+        {{headerConstants.clear}}
+      </ion-col>
+      <ion-col class="filter-text" (click)="applyFilter()">
+        {{headerConstants.filter}}
+      </ion-col>
+      <ion-col class="close-text" (click)="close()">
+        {{headerConstants.close}}
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+  <div *ngFor="let object of filterObject">
+    <ion-item lines="none" *ngIf="object.Heading == filterElements.recordsby">
+      <ion-label class="itemText">
+        <ion-row>
+          {{object.Heading}}
+        </ion-row>
+        <ion-row class="filter-row">
+          <div class="filter-item" *ngFor="let element of object.Elements,let i=index" [ngClass]="{'item-margin' : i!=0 , 'selected-filter' : selectedFilter.recordsby == element }" (click)="selectFilterRecords(element)">{{element}}</div>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" *ngIf="object.Heading == filterElements.sortby">
+      <ion-label class="itemText">
+        <ion-row>
+          {{object.Heading}}
+        </ion-row>
+        <ion-row class="filter-row">
+          <div class="filter-item" *ngFor="let element of object.Elements,let i=index" [ngClass]="{'item-margin' : i!=0 , 'selected-filter' : selectedFilter.sortby == element }" (click)="selectFilterSort(element)">{{element}}</div>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </div>
+</ion-content>

@@ -1,0 +1,28 @@
+<span *ngIf="derivedFields.indexOf(config[widgetKey._id]) > -1 ? false : isTable ? true : config[widgetKey.isUnderHeading].length==0?true:config[widgetKey.isUnderHeading]== expendedHeaderId?true:false">
+  <ion-row>
+    <ion-col size="12" padding>
+      <ion-label>{{config[widgetKey.label]}}</ion-label>&nbsp;<span *ngIf="config[widgetKey.isRequired] == true" class="redColor"> *</span>
+    </ion-col>
+  </ion-row>
+  <ion-card class="widget-card">
+    <ion-row>
+      <ion-col size="9" [formGroup]="group" >
+        <ion-range (ionChange)="getRatingValue(config[widgetKey._id])" [disabled]="historyView" class="rangeStyles" [min]="config[widgetKey.minimum]" [max]="config[widgetKey.maximum]"
+        [formControlName]="config[widgetKey._id]">
+          <ion-label slot="start">{{config[widgetKey.minimum]}}</ion-label>
+          <ion-label slot="end">{{config[widgetKey.maximum]}}</ion-label>
+        </ion-range>
+      </ion-col>
+      <ion-col size="3" style="text-align: right;">
+        <circle-progress [title]="group.get(config[widgetKey._id]).value ?group.get(config[widgetKey._id]).value : 1" [percent]="rating" [maxPercent]="100" [radius]="25" [space]="-10"
+          [outerStrokeGradient]="true" [outerStrokeWidth]="10" [outerStrokeColor]="'#4882c2'" [outerStrokeGradientStopColor]="'#53a9ff'"
+          [innerStrokeColor]="'#e7e8ea'" [innerStrokeWidth]="10" [showUnits]="false" [showSubtitle]="false" [showBackground]="false"
+          [clockwise]="true" [startFromZero]="false">
+        </circle-progress>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <app-validation [dynamicFormControlRef]="group.get(config[widgetKey._id])">
+
+  </app-validation>
+</span>

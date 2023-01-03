@@ -1,0 +1,14 @@
+<div #mapElement class="map"></div>
+<app-map-menu *ngIf="isHistory == false" [isHistory]="isHistory" [toolbarButtonConf]= 'toolbarButtonConf' (selectedMapAction) = selectedMapAction($event)></app-map-menu>
+<div id="map-back" ><ion-icon class="backarrow back-button-style" name="arrow-back" color="dark" size="large" (click)="goBack()"></ion-icon>
+</div>
+
+<input #seaechElement [ngClass]="{'search-container': !addressSearchStatus}" id="pac-input" class="searcb-bar" type="text" placeholder="Search"
+    [(ngModel)]="placeText">
+<div [ngClass]="{'search-container': !addressSearchStatus}" id="search-close" class="search-close" (click)="closeAddressSearch();$event.stopPropagation()">
+    <ion-icon name="ios-close-circle-outline" size="large"></ion-icon>
+</div>
+<div [ngClass]="{'search-container': !addressSearchStatus}" *ngIf="placeText" id="search-clear" class="search-clear"
+    (click)="clearAddressText();$event.stopPropagation()">
+    <ion-icon name="md-close" size="large"></ion-icon>
+</div>

@@ -1,0 +1,13 @@
+<div *ngIf="activeCard == 3" (swipe)="swipeEvent($event,3)" class="animated" [ngClass]="{'fadeInLeft': sliderType == 2, 'fadeInRight' : sliderType == 1}">
+  <app-task-info [doughnutChartLabels]="doughnutChartLabels" [doughnutChartType]="doughnutChartType" [legend]="legend" [doughnutColors]="doughnutColors" [sliderType]="sliderType" [taskCheck]="taskCheck" (countChecked)="sendToDashboard($event)"></app-task-info>
+</div>
+<div *ngIf="activeCard == 1" (swipe)="swipeEvent($event,1)" class="animated user-info" [ngClass]="{'fadeInLeft': sliderType == 2, 'fadeInRight' : sliderType == 1}">
+    <app-user-info></app-user-info>
+</div>    
+<div *ngIf="activeCard == 2" (swipe)="swipeEvent($event,2)" class="animated" [ngClass]="{'fadeInLeft': sliderType == 2, 'fadeInRight' : sliderType == 1}">
+  <app-forms-info [doughnutChartLabels]="doughnutChartLabels" [doughnutChartType]="doughnutChartType" [legend]="legend" [doughnutColors]="doughnutColors" [sliderType]="sliderType" [taskCheck]="taskCheck" (countChecked)="sendToDashboard($event)"></app-forms-info>
+</div>
+<!-- <div *ngIf="activeCard == 3" (swipe)="swipeEvent($event,3)" class="animated" [ngClass]="{'fadeInLeft': sliderType == 2, 'fadeInRight' : sliderType == 1}">
+  <app-work-order-info [doughnutChartLabels]="doughnutChartLabels" [doughnutChartType]="doughnutChartType" [legend]="legend" [doughnutColors]="doughnutColors" [sliderType]="sliderType"></app-work-order-info>
+</div> -->
+

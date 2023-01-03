@@ -1,0 +1,164 @@
+<app-header
+[Header]="workOrderHeader"
+[headerSize]="0"
+[ellipseList] = "ellipsePopoverList"
+[filterObject] = "filterObject"
+[selectedFilter] = "selectedFilter"
+[hideFilter]="hideFilter"
+[headerInputs]="headerInputs"
+[hideMap]="hideMap"
+[hideEllipse]="hideEllipse"
+(searchEvent)="searchEventWo($event)"
+(filterByInPage) = "filterByEvent($event)"
+[showSync]="showSyncButton"
+(syncButton)="synAssignment($event)"
+></app-header>
+<!-- (filterEvent)="filterEventWo($event)" -->
+<ion-content class="content-style">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="{{refresh.pullingIcon}}"
+      pullingText="{{refresh.pullingText}}"
+      refreshingText="{{refresh.text}}">
+    </ion-refresher-content>
+  </ion-refresher>
+  <!-- refreshingSpinner="{{refresh.spinner}}" -->
+
+
+  <div *ngIf="woDataLoaded == false">
+    <ion-list class="List">
+      <ion-item-sliding class="sliding-item" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" #slidingItem>
+        <ion-item lines="full">
+          <img [src]="imageIcons.workOrder" class="form-icon">
+          <ion-label class="form-label">
+            <ion-row class="listRow1 form-list-row">
+              <ion-col size="5" class="listColumn">
+                <span ><ion-skeleton-text [animated]="true"></ion-skeleton-text></span>
+              </ion-col>
+              <ion-col size="1" class="listColumn" style="text-align: center;color: #a9a6a6;">
+                <span>|</span> 
+              </ion-col>
+              <ion-col size="6" class="statusColumn">
+                <span class="skeletonBlock" *ngIf="router.url.includes('tasksList')">{{displayProperties.statusLabel}} : 
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </span>
+                <span class="skeletonBlock" *ngIf="router.url.includes('formsList')"> {{displayProperties.statusLabel}} : <ion-skeleton-text [animated]="true"></ion-skeleton-text></span>
+
+              </ion-col>
+            </ion-row>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option class="sliding-option">
+            <ion-icon name="information-circle-outline" size="large" ></ion-icon>
+          </ion-item-option>
+          <ion-item-option class="sliding-option">
+            <ion-icon name="trash" size="large"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+
+
+
+  <div *ngIf="router.url.includes('formsList')">
+    <ion-list class="List" [ngClass]="{'list-bottom-padd' : selectedWorkOrderCount > 0}">
+      <ion-item-sliding class="sliding-item" *ngFor="let record of workOrders" #slidingItem>
+        <ion-item (click)="openForm(record)" lines="full" [ngClass]="{'selectedRecord':selectedWorkOrders.includes(record[workOrderListKeys.recordId])}" >
+            <ion-ripple-effect type="bounded"></ion-ripple-effect>
+          <img *ngIf="!selectedWorkOrders.includes(record[workOrderListKeys.recordId])" [src]="imageIcons.workOrder" class="form-icon" (click)="formsSelected(record[workOrderListKeys.recordId])">
+          <img *ngIf="selectedWorkOrders.includes(record[workOrderListKeys.recordId])" [src]="imageIcons.checked" class="form-checked-icon" (click)="formsDeSelected(record[workOrderListKeys.recordId])">
+          <ion-label class="form-label">
+            <ion-row class="listRow1 form-list-row">
+              <ion-col size="5" class="listColumn">                  
+                  <span>{{record[displayField]}} </span>
+              </ion-col>
+              <ion-col size="1" class="listColumn" style="text-align: center;">
+                <span>|</span> 
+              </ion-col>
+              <ion-col size="6" class="statusColumn">
+                <span>{{displayProperties.statusLabel}} :
+                    <span [ngClass]="{'savedRecord' : record[workOrderListKeys.status]==recordStatus.saved,'reassignedRecord' : record[workOrderListKeys.status]==recordStatus.reassigned}">
+                      <!-- {{statusName[record[workOrderListKeys.status]]?statusName[record[workOrderListKeys.status]]:'saved'}} -->
+                      {{statusName[record[workOrderListKeys.status]]}}
+                    </span>
+                </span>
+                <!-- <span> Saved Date : {{record.insertDate | date : "dd-MM-yy" }}</span> -->
+              </ion-col>
+            </ion-row>
+        
+          </ion-label>
+       
+        </ion-item>
+        <ion-item-options side="end">
+            <ion-item-option class="sliding-option">
+                <ion-icon name="information-circle-outline" size="large" (click)="showInfo(record[workOrderListKeys.recordId],record[workOrderListKeys.formId],slidingItem,record[workOrderListKeys.status])"></ion-icon>
+              </ion-item-option>
+          <ion-item-option *ngIf="record[workOrderListKeys.status]==recordStatus.saved" class="sliding-option">
+            <ion-icon name="trash" size="large" (click)="deleteWorkOrder(record[workOrderListKeys.offlineId],record[workOrderListKeys.recordId],slidingItem)"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+  <div *ngIf="router.url.includes('tasksList')">
+    <ion-list class="List" [ngClass]="{'list-bottom-padd' : selectedWorkOrderCount > 0}">
+      <ion-item-sliding class="sliding-item" *ngFor="let record of workOrders | orderBy:orderType" #slidingItem>
+        <ion-item lines="full" [ngClass]="{'selectedRecord':selectedWorkOrders.includes(record[workOrderListKeys.recordId]), 'statusBackground' :record[workOrderListKeys.recordId] == notificationId }" >
+            <ion-ripple-effect type="bounded"></ion-ripple-effect>
+          <img *ngIf="record[workOrderListKeys.recordId]?selectedWorkOrders.includes(record[workOrderListKeys.recordId]):selectedWorkOrders.includes(record[workOrderListKeys.offlineId]) " [src]="imageIcons.checked" class="form-checked-icon" (click)="workOrderDeSelected(record)">
+          <img *ngIf="record[workOrderListKeys.recordId]?!selectedWorkOrders.includes(record[workOrderListKeys.recordId]):!selectedWorkOrders.includes(record[workOrderListKeys.offlineId])" [src]="imageIcons.workOrder" class="form-icon" (click)="workOrderSelected(record)">
+          <ion-label class="form-label" (click)="openForm(record)">
+            <ion-row class="listRow1 form-list-row">
+              <ion-col size="5" class="listColumn">
+                <span [ngClass]="{'statusText' :record[workOrderListKeys.recordId] == notificationId }">{{record[displayField]}}</span>
+              </ion-col>
+              <ion-col size="1" class="listColumn" style="text-align: center;color: #a9a6a6;">
+                <span>|</span> 
+              </ion-col>
+              <ion-col size="6" class="statusColumn">
+                <span>{{displayProperties.statusLabel}} : 
+                  <span [ngClass]="{'newRecord' : record[workOrderListKeys.status]==recordStatus.new, 'savedRecord' : record[workOrderListKeys.status]==recordStatus.saved, 'reassignedRecord' : record[workOrderListKeys.status]==recordStatus.reassigned, 'syncRecord' : record[workOrderListKeys.status]==recordStatus.sync, 'statusBackground' :record[workOrderListKeys.recordId] == notificationId}">
+                    {{statusName[record[workOrderListKeys.status]]}}
+                  </span>
+                </span>
+              </ion-col>
+            </ion-row>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option class="sliding-option">
+            <ion-icon name="information-circle-outline" size="large" (click)="showInfo(record[workOrderListKeys.recordId],record[workOrderListKeys.formId],slidingItem,record[workOrderListKeys.status])"></ion-icon>
+          </ion-item-option>
+          <!-- <ion-item-option *ngIf="networkStatus && record[workOrderListKeys.status]!=recordStatus.saved" class="sliding-option">
+            <ion-icon name="download" size="large"></ion-icon>
+          </ion-item-option> -->
+          <ion-item-option *ngIf="record[workOrderListKeys.status]==recordStatus.saved" (click)="deleteWorkOrder(record[workOrderListKeys.offlineId],record[workOrderListKeys.recordId], slidingItem)" class="sliding-option">
+            <ion-icon name="trash" size="large"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+  <app-slected-action *ngIf="selectedWorkOrderCount > 0" [inputData]="selectiondData" (emitSelectedAction)="executSelectedEvent($event)"></app-slected-action>
+  <ion-infinite-scroll *ngIf="!stopInfiniteScroll" class="scroll-color" threshold="100px" (ionInfinite)="moreRecords($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="circles"
+      loadingText="{{loaderText}}">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
+  <ion-fab *ngIf="plusPlacement" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="openNewForm()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-item *ngIf="workOrders && workOrders.length == 0" lines="none" class="noSaved">
+    <!-- <ion-text>No data found</ion-text> -->
+    <ion-text>{{displayProperties.tapPlusForNewRecord}}</ion-text>
+  </ion-item>
+
+</ion-content>

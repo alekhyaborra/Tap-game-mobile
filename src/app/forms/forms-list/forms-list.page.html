@@ -1,0 +1,80 @@
+<app-header [Header]="formListHeader" [ellipseList]="ellipsePopoverList" [headerInputs]="headerInputs"
+  [hideFilter]="hideFilter" [hideMap]="hideMap" [hideEllipse]="hideEllipse"
+  (searchEvent)="formsListSearchEvent($event)"></app-header>
+<ion-content class="content-style">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="{{refresh.pullingIcon}}" pullingText="{{refresh.pullingText}}"
+      refreshingText="{{refresh.text}}">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="List" *ngIf="formListData == false">
+    <ion-item-sliding class="sliding-item" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" #slidingItem>
+      <ion-item lines="full">
+        <img [src]="imageIcons.forms" class="form-icon">
+        <ion-label class="form-label">
+          <ion-row class="listRow1 form-list-row">
+            <ion-col class="listColumn">
+              <span>
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </span>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option class="sliding-option">
+          <ion-icon name="information-circle-outline" size="large"></ion-icon>
+        </ion-item-option>
+        <ion-item-option *ngIf="networkStatus" class="sliding-option">
+          <ion-icon name="download" size="large"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list class="List" [ngClass]="{'list-bottom-padd' : selectedFormsCount > 0}">
+    <ion-item-sliding class="sliding-item" *ngFor="let form of formsList" #slidingItem>
+      <ion-item lines="full" [ngClass]="{'selectedRecord':selectedElements.includes(form[formListKeys.formId])}"
+        (click)="getRecords(form[formListKeys.formId],form[formListKeys.formName])">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <img *ngIf="selectedElements.includes(form[formListKeys.formId])" [src]="imageIcons.checked"
+          class="form-checked-icon" (click)="formsDeSelected(form[formListKeys.formId])">
+        <!-- added below lines for sync -->
+        <img *ngIf="!form[formListKeys.syncStatus]" [src]="imageIcons.forms" class="form-icon">
+        <circle-progress *ngIf="form[formListKeys.syncStatus]" style="margin-left: -7px;margin-right: -2px;"
+          [percent]="form.successSync" [radius]="16" [outerStrokeWidth]="6" [outerStrokeColor]="'#78C000'"
+          [showInnerStroke]="false" [animation]="false" [showUnits]="true" [showSubtitle]="false"></circle-progress>
+        <ion-label class="form-label">
+          <ion-row class="listRow1 form-list-row">
+            <ion-col class="listColumn">
+              <span>{{form[formListKeys.formName]}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option class="sliding-option" (click)="formInfo(form[formListKeys.formId],slidingItem)">
+          <ion-icon name="information-circle-outline" size="large"></ion-icon>
+        </ion-item-option>
+        <ion-item-option *ngIf="networkStatus" class="sliding-option"
+          (click)="formDownload(form[formListKeys.formId],slidingItem)">
+          <ion-icon name="download" size="large"></ion-icon>
+        </ion-item-option>
+        <ion-item-option *ngIf="networkStatus" class="sliding-option">
+          <ion-icon name="sync" size="large" (click)="syncFormRecords(form[formListKeys.formId])"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <app-slected-action *ngIf="selectedFormsCount > 0" [inputData]="selectiondData"
+    (emitSelectedAction)="executSelectedEvent($event)"></app-slected-action>
+  <ion-infinite-scroll *ngIf="!stopInfiniteScroll" class="scroll-color" threshold="100px"
+    (ionInfinite)="loadMoreData($event)">
+    <ion-infinite-scroll-content loadingSpinner="circles" loadingText="{{loaderText}}">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-item *ngIf="formsList && formsList.length == 0" lines="none" class="noSaved">
+    <ion-text>{{displayProperties.noDataFound}}</ion-text>
+  </ion-item>
+</ion-content>

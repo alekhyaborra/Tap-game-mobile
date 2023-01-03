@@ -1,0 +1,25 @@
+.list-card{
+    margin-left: 0px;
+    margin-right: 0px;
+    box-shadow: 0 0px 0px 0px rgba(0,0,0,.2), 0 0px 0px 0 rgba(0,0,0,.14), 0 0px 0px 0 rgba(0,0,0,.12);
+}
+.list-label{    
+    color: #a9a6a6;
+    font-size: 12px;
+}
+.history-item{
+    margin-bottom: 8px !important;
+    border-radius: 12px;
+    margin: 0px;
+}
+.history-icon{
+    width: 51px;
+    margin-left: -6px;
+}
+.label-history{
+    margin-top: 17px;
+    margin-bottom: 4px;
+}
+.skeletonBlock{
+    display: -webkit-inline-box;
+}

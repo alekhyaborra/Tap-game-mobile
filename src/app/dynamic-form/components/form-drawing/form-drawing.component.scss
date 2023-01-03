@@ -1,0 +1,120 @@
+.backIconStyle{
+    height: 26px;
+    width: 26px;
+    position: absolute;
+    z-index: 3;
+    margin-left: 12px;
+    top:11px;
+}
+.textandPencil{
+    position: absolute;
+    // margin-left: 53%;
+    // margin-left: 70%;
+    z-index:3;
+    top:0;
+}
+.pencilMode{
+    border: 1px solid #afafaf !important;
+    height: 56px;  position: absolute;
+    margin-top: 10px; 
+    width: 60%;
+    margin-left: 20%; 
+    top: 32px;  
+    z-index: 5; 
+    text-align: -webkit-center;
+}
+.p1{
+    height: 18px;
+    width: 26px;
+    margin-top: 11px;
+    margin-left: 12px;
+}
+.p2{
+    height: 25px;
+    width: 36px;
+    margin-top: 11px;
+    margin-left:12px;
+}
+.p3{
+    height: 31px;
+    width: 36px;
+    margin-top: 11px;
+    margin-left: 12px;
+}
+.p4{
+    height: 33px;
+    width: 36px;
+    margin-top: 11px;
+    margin-left: 12px;
+}
+.footerIcons{
+    position: absolute;
+    bottom: -2.4%;
+    padding: 19px;
+    width: 100%;
+    z-index: 2;
+    padding-top: 0;
+}
+.footerIconStyle{
+    height: 26px;
+    width:26px;
+}
+.undo{
+    height: 26px;
+    width:26px;
+    margin-left:20%
+}
+.redo{
+    height: 26px;
+    width:26px;
+    margin-left:28%
+}
+.save{
+    height: 26px;
+    width: 26px;
+    float: right;
+}
+.topBackground{
+    position: absolute;
+    z-index: 1;
+    top:0;
+    // background: black;
+    background: #3270DC;
+    // opacity: 0.3;
+    height: 40px;
+    width: 100%;
+}
+.bottomBackground{
+    position: absolute;
+    z-index: 1;
+    bottom:0;
+    // background: black;
+    background: #3270DC;
+    // opacity: 0.3;
+    height: 40px;
+    width: 100%;
+}
+.pencilModeIcon{
+    height: 25px;
+    width: 26px;
+    margin-top: 11px;
+    margin-left:16px;
+}
+.textIcon{
+    height: 25px;
+    width: 26px;
+    margin-top: 11px;
+    margin-left: 16px;
+}
+.textAndPencil{
+    position: absolute;
+    // margin-left: 70%;
+    margin-left: 20%;
+    z-index:3;
+    top:0;
+}
+@media (min-width: 401px){
+.canvas-whiteboard-colorpicker {
+    position: inherit;
+}
+}

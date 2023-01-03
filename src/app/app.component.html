@@ -1,0 +1,11 @@
+<ion-app>
+  <app-notification 
+  *ngIf="showNotification" 
+  [showNotification]="showNotification" 
+  [notificationData]="notificationData" 
+  (sendData)="getNotificationRecord($event)"
+  (closeNotification)="hideNotification($event)"> 
+  </app-notification>
+  <ion-backdrop *ngIf="enableBackdrop"></ion-backdrop>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>

@@ -1,0 +1,23 @@
+<div class="dashboard-container">
+  <div class="main-div">
+    <ion-row class="row-one">
+      <ion-col>
+        <div class="action-container">
+          <img [src]="notificationIcon" class="action-icon" (click)="notifications()">
+          <img [src]="settingIcon" class="action-icon setting-icon" (click)="settings()">
+        </div>
+      </ion-col>
+    </ion-row>
+    <app-slider-container [taskCheck]="checkCountOfTask" (taskCountChecked)="entryCheck($event)" #slider></app-slider-container>
+  </div>
+  <div class="version-alert"  *ngIf="!isAppLatestVersion">
+    <ion-text color="warning"  class="version-alert-text">
+      {{displayProperties.versionUpdateAlertMsg}} 
+    </ion-text>
+  </div>
+ 
+  <ion-row justify-content-center align-items-center class="main-action-row row-four">
+    <app-forms-tab class="tab-component margin-top-10px" (click)="gotoFormsList()"></app-forms-tab>
+    <app-task-tab class="tab-component" (click)="gotoTasksList()"></app-task-tab>
+  </ion-row>
+</div>

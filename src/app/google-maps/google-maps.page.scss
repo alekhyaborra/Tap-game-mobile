@@ -1,0 +1,47 @@
+.map {
+    height: 100%;
+  }
+
+  #map-back {
+    width:20%;
+    position:absolute;
+}
+
+.back-button-style{
+    padding: 3px;
+    background-color: #a59f9f;
+    border-radius: 33px;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+
+.searcb-bar{
+    z-index: 0;
+    position: absolute !important;
+    left: 10px !important;
+    top: 55px !important;
+    height: 43px !important;
+    width: 82% !important;
+    border-radius: 5px !important;
+    border: 1px solid #6c6565;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.search-close{
+    position: absolute;
+    top: 60px;
+    left: 85%;
+    color: #696161;
+}
+
+.search-clear{
+    position: absolute;
+    top: 60px;
+    left: 75%;
+    color: #696161;
+}
+
+.search-container{
+    display: none;
+}

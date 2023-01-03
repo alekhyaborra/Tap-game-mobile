@@ -1,0 +1,137 @@
+<app-header [Header]="displayProperties.dashboardTaskName" [headerSize]="0" [ellipseList]="ellipsePopoverList"
+  [filterObject]="filterObject" [selectedFilter]="selectedFilter" [hideFilter]="hideFilter" [hideMap]="hideMap"
+  [hideEllipse]="hideEllipse" (filterByInPage)="filterByEvent($event)" [headerInputs]="headerInputs"
+  (searchEvent)="taskListSearchEvent($event)"></app-header>
+
+<ion-content #container class="content-style">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="{{refresh.pullingIcon}}" pullingText="{{refresh.pullingText}}"
+      refreshingText="{{refresh.text}}">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="List" *ngIf="taskListData == false">
+    <ion-item-sliding class="sliding-item" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]" #slidingItem>
+      <ion-item lines="full">
+        <img [src]="imageIcons.tasks" class="task-icon">
+        <ion-label>
+          <ion-row class="listRow1">
+            <ion-col size="5" class="listColumn">
+              <span>
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </span>
+            </ion-col>
+            <ion-col size="2" class="listColumn"></ion-col>
+            <ion-col size="3" class="statusColumn">
+              <span class="skeletonBlock">{{displayProperties.statusLabel}} :
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </span>
+            </ion-col>
+
+          </ion-row>
+          <ion-row class="listRow2">
+            <ion-col size="5" class="listColumn">
+              <span class="skeletonBlock"> {{displayProperties.assignedByLabel}} : <ion-skeleton-text [animated]="true">
+                </ion-skeleton-text></span>
+            </ion-col>
+            <ion-col size="2" class="listColumn" style="text-align: center;">
+              <span>|</span>
+            </ion-col>
+            <ion-col size="5" class="listColumn">
+              <span class="skeletonBlock"> {{displayProperties.dueDateLabel}} : <ion-skeleton-text [animated]="true">
+                </ion-skeleton-text> </span>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option class="sliding-option">
+          <ion-icon name="information-circle-outline" size="large"></ion-icon>
+        </ion-item-option>
+        <ion-item-option *ngIf="networkStatus" class="sliding-option">
+          <ion-icon name="download" size="large"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <ion-list class="List" [ngClass]="{'list-bottom-padd' : selectedTaskCount > 0}">
+    <ion-item-sliding class="sliding-item" *ngFor="let task of tasksList | orderBy:orderType; let i= index"
+      [id]="'task' + task.index" #slidingItem>
+      <ion-item lines="full"
+        [ngClass]="{'selectedRecord':selectedTasks.includes(task[taskListKeys.assignmentId]), 'statusBackground' :task[taskListKeys.assignmentId] == notificationId }">
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+
+        <img *ngIf="selectedTasks.includes(task[taskListKeys.assignmentId])" [src]="imageIcons.checked"
+          class="checked-icon">
+        <img *ngIf="!task[taskListKeys.syncStatus]" [src]="imageIcons.tasks" class="task-icon">
+        <circle-progress *ngIf="task[taskListKeys.syncStatus]" style="margin-left: -7px;margin-right: -2px;"
+          [percent]="task.successSync" [radius]="16" [outerStrokeWidth]="6" [outerStrokeColor]="'#78C000'"
+          [showInnerStroke]="false" [animation]="false" [showUnits]="true" [showSubtitle]="false"></circle-progress>
+        <ion-label (click)="getRecords(task)">
+          <ion-row class="listRow1">
+            <ion-col size="5" class="listColumn">
+              <span
+                [ngClass]="{'statusText' :task[taskListKeys.assignmentId] == notificationId }">{{task[taskListKeys.assignmentName]}}</span>
+            </ion-col>
+            <ion-col size="2" class="listColumn"></ion-col>
+            <ion-col size="3" class="statusColumn">
+              <span>{{displayProperties.statusLabel}} :
+                <span
+                  [ngClass]="{'newRecord' : task[taskListKeys.status]==taskStatus.new, 'savedRecord' : task[taskListKeys.status]==taskStatus.saved, 'reassignedRecord' : task[taskListKeys.status]==taskStatus.reassigned, 'syncRecord' : task[taskListKeys.status]==taskStatus.sync, 'statusText' :task[taskListKeys.assignmentId] == notificationId }">
+                  {{task[taskListKeys.status]}}
+                </span>
+              </span>
+            </ion-col>
+            <ion-col size="2" class="circle_top" *ngIf="downloadingAssignment == task[taskListKeys.assignmentId]">
+              <circle-progress [animationDuration]="0" [responsive]="true" [percent]="downloadingPercentage"
+                [radius]="25" [space]="-10" [outerStrokeGradient]="true" [outerStrokeWidth]="10"
+                [outerStrokeColor]="'#4882c2'" [outerStrokeGradientStopColor]="'#53a9ff'" [innerStrokeColor]="'#e7e8ea'"
+                [innerStrokeWidth]="10" [showUnits]="false" [showSubtitle]="false" [showBackground]="false"
+                [clockwise]="true" [startFromZero]="false">
+              </circle-progress>
+            </ion-col>
+          </ion-row>
+          <ion-row class="listRow2">
+            <ion-col size="5" class="listColumn">
+              <span [ngClass]="{'statusText' :task[taskListKeys.assignmentId] == notificationId }">
+                {{displayProperties.assignedByLabel}}: {{task[taskListKeys.assignedBy]}}</span>
+            </ion-col>
+            <ion-col size="2" class="listColumn" style="text-align: center;">
+              <span>|</span>
+            </ion-col>
+            <ion-col size="5" class="listColumn">
+              <span
+                [ngClass]="{'statusText' :task[taskListKeys.assignmentId] == notificationId }">{{displayProperties.dueDateLabel}}
+                : {{task[taskListKeys.dueDate] | date : "dd-MM-yy"}} </span>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option class="sliding-option">
+          <ion-icon name="information-circle-outline" size="large"
+            (click)="getTaskInfo(task[taskListKeys.taskId],task[taskListKeys.projectId],slidingItem)"></ion-icon>
+        </ion-item-option>
+        <ion-item-option *ngIf="networkStatus" class="sliding-option">
+          <ion-icon name="download" size="large"
+            (click)="downloadAssignment(task[taskListKeys.taskId],task[taskListKeys.assignmentId], task[taskListKeys.formId],slidingItem)">
+          </ion-icon>
+        </ion-item-option>
+        <ion-item-option *ngIf="networkStatus" class="sliding-option">
+          <ion-icon name="sync" size="large" (click)="synAssignment(task[taskListKeys.assignmentId])"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <app-slected-action *ngIf="selectedTaskCount > 0" [inputData]="selectiondData"
+    (emitSelectedAction)="executSelectedEvent($event)"></app-slected-action>
+  <ion-infinite-scroll *ngIf="!stopInfiniteScroll" class="scroll-color" threshold="100px"
+    (ionInfinite)="loadMoreData($event)">
+    <ion-infinite-scroll-content loadingSpinner="circles" loadingText="{{displayProperties.infiniteScrollText}}">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-item *ngIf="tasksList.length == 0" lines="none" class="noSaved">
+    <ion-text>{{noDataFound}}</ion-text>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "823406215202",
+    "firebase_url": "https://fieldon-3d5af.firebaseio.com",
+    "project_id": "fieldon-3d5af",
+    "storage_bucket": "fieldon-3d5af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823406215202:android:67feb05c5259ee0f3cca7b",
+        "android_client_info": {
+          "package_name": "io.MM.FieldOn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823406215202-l84pakqa1vdail2da10vp5ho2n1rj833.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT5KR7wETP75EAsw4qarL4KKeo0jcCV-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823406215202-l84pakqa1vdail2da10vp5ho2n1rj833.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "823406215202-r0o985amn1s97s71k5ssqcb386ua6ia6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.magikminds.ent.FieldOn"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

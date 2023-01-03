@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-list class="headerlist">
+    <ion-item lines="none" class="headerItem1">
+      <ion-label>
+        <ion-row class="header-row">
+          <ion-col size="1" class="back-button">
+            <ion-icon class="backarrow" name="arrow-back" color="light" size="large" (click)="goBack()"></ion-icon>
+          </ion-col>
+          <ion-col size="{{hideMap?7:networkStatus?5:5}}" class="overflow heading">
+            <ion-text class="headingSize">
+                {{Header}}
+            </ion-text>
+          </ion-col>
+          <ion-col size="2">
+            <div class="icons" *ngIf="networkStatus && showSync">
+              <ion-icon name="sync" size="large" (click)="sync()" color="light"></ion-icon>
+            </div>
+        </ion-col>
+          <ion-col size="2" *ngIf="networkStatus && !hideMap">
+            <div class="icons">
+              <img src="assets/images/map-pin.svg" (click)="gotoMapView()" class="icons">
+            </div>
+          </ion-col>
+          <ion-col size="2">
+            <div *ngIf="networkStatus && !hideEllipse" class="icons">
+              <app-header-ellipse class="ellipseComponent"
+              [ellipseList] = "ellipseList"
+              [headerInputs]="headerInputs"
+              ></app-header-ellipse>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" class="headerItem2">
+      <ion-card class="searchbar-card">
+        <ion-row class="searchbar-row">
+          <ion-col class="searchbar-column" size="{{searchbarColSize}}">
+            <app-search (searchEvent)="callMe($event)" [headerInputs]="headerInputs"></app-search>
+          </ion-col>
+          <ion-col size="2" *ngIf="!hideFilter">
+            <app-filter
+            [filterObject] = "filterObject"
+            [selectedFilter] = "selectedFilter"
+            (filterByInHeader) = "filterByInHeader($event)"
+            ></app-filter>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-text color="warning" *ngIf="!isAppLatestVersion">
+    Your app version is older, please update it from store
+  </ion-text> -->
+  <div class="version-alert" *ngIf=" !isAppLatestVersion">
+    <ion-text color="warning" class="version-alert-text">
+      {{versionAlertMsg}}
+    </ion-text>
+  </div>
+</ion-toolbar>
+</ion-header>
+

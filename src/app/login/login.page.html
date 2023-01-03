@@ -1,0 +1,66 @@
+<ion-row class="main-div" justify-content-center align-items-center>
+  <!-- <ion-button color="primary" (click)="getDDevicesScreen()">devices</ion-button> -->
+  <ng-container *ngIf="loginPage">
+    <form (ngSubmit)="login(loginForm)" (keyup.enter)="login(loginForm)" #loginForm="ngForm" novalidate>
+      <ion-card class="card-custom animated" [ngClass]="{'flipInY': cardRotate}">
+        <ion-card-header>
+          <img [src]="logoIcon" class="logoIcon">
+        </ion-card-header>
+        <ion-list class="ion-padding">
+          <ion-item class="ion-item-custome">
+            <img class="input-icons" [src]="profileIcon">
+            <ion-input  type="text" class="user-name input-element" placeholder="Username" name="name" [(ngModel)]="userName"  [required]="true"
+              #usernameRef="ngModel"></ion-input>
+          </ion-item>
+          <div *ngIf="loginForm.submitted  && usernameRef.invalid">
+            <p *ngIf="usernameRef.errors.required" class="error">{{usernameRequired}}</p>
+          </div>
+          <ion-item class="ion-item-custome">
+            <app-show-hide-password>
+            <img class="input-icons" [src]="lockIcon">
+            <ion-input  type="password" class="input-element" placeholder="Password" name="password" [(ngModel)]='password'  [required]="true" #passwordRef="ngModel"></ion-input>
+          </app-show-hide-password>
+          </ion-item>
+          <div *ngIf="loginForm.submitted  && passwordRef.invalid" class="error">
+            <p *ngIf="passwordRef.errors.required">{{passwordRequired}}</p>
+          </div>
+        </ion-list>
+        <div padding class="forget-password-div">
+          <p class="formsz-text-color ion-text-right forget-password" (click)="changePage()">
+            {{displayProperties.forGgotPasswordAlert}}
+          </p>
+        </div>
+        <div padding class="login-button-div">
+          <ion-button class="login-button" expand="full" type="submit">{{displayProperties.signInLabel}}</ion-button>
+        </div>
+      </ion-card>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="forgotPasswordPage">
+    <form (ngSubmit)="getPassword(passwordForm)" (keyup.enter)="getPassword(passwordForm)" #passwordForm="ngForm" novalidate>
+      <ion-card class="card-custom animated"  [ngClass]="{'flipInY': cardRotate}">
+        <ion-card-header>
+          <img [src]="logoIcon" class="logoIcon">
+        </ion-card-header>
+        <ion-list class="ion-padding">
+          <ion-item class="ion-item-custome">
+            <img class="input-icons" [src]="profileIcon">
+            <ion-input type="text" class="user-name input-element" placeholder="Username" name="name" [(ngModel)]="userName"  [required]="true"
+              #usernameRef="ngModel"></ion-input>
+          </ion-item>
+          <div *ngIf="passwordForm.submitted  && usernameRef.invalid">
+            <p *ngIf="usernameRef.errors.required" class="error">{{usernameRequired}}</p>
+          </div>
+        </ion-list>
+        <div padding class="forget-password-div">
+          <p class="formsz-text-color ion-text-right forget-password" (click)="changePage()">
+            {{displayProperties.signInLabel}}
+          </p>
+        </div>
+        <div padding class="login-button-div">
+          <ion-button class="login-button" expand="full" type="submit">{{displayProperties.getPasswordLabel}}</ion-button>
+        </div>
+      </ion-card>
+    </form>
+  </ng-container>
+</ion-row>

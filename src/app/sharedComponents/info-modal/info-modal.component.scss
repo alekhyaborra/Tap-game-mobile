@@ -1,0 +1,23 @@
+.itemHeight{
+    margin: 0px;
+    font-size: 14px;
+}
+.info-footer{
+    --background: linear-gradient(#3270DC, #40C1F6);
+    height: 47px;
+}
+.text-wrap{
+    max-width: none !important;
+    width: 100% !important;
+    white-space: normal !important;
+}
+
+.description{
+    height: 100px;
+    overflow-y: auto;
+}
+
+.value-row{
+    margin-top: 5px;
+    color: #6b6969;
+}

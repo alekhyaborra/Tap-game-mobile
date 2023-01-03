@@ -1,0 +1,7 @@
+{
+  "name": "FieldonMobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

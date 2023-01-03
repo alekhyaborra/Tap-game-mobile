@@ -1,0 +1,12 @@
+<ng-container *ngIf="derivedFields.indexOf(config[widgetKey._id]) > -1 ? false : isTable ? true : config[widgetKey.isUnderHeading].length==0?true:config[widgetKey.isUnderHeading]== expendedHeaderId?true:false">
+    <ion-row>
+        <ion-col size="12" padding>
+            <ion-label>{{config[widgetKey.label]}}</ion-label>&nbsp;<span *ngIf="config[widgetKey.isRequired] == true" class="redColor"> *</span>
+        </ion-col>
+    </ion-row>
+    <ion-card [formGroup]="group" class="widget-card">
+        <ion-input [formControlName]="config[widgetKey._id]" [placeholder]="config[widgetKey.placeholder]"></ion-input>
+    </ion-card>
+    <app-validation [dynamicFormControlRef]="group.get(config[widgetKey._id])">
+    </app-validation>
+</ng-container>

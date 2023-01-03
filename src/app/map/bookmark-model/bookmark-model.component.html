@@ -1,0 +1,20 @@
+<ion-toolbar color="primary">
+  <ion-title style="left: 75px; right: 75px;">
+      <span style="color: #FFFFFF;">{{ name }}</span>
+  </ion-title>
+  <ion-buttons slot="end">
+          <ion-text style="font-size:15px; width: 70px; margin-top: 0px; text-align: center;
+          box-shadow: none;" (click)="closeBookmarkModal()">
+          <ion-icon src="./assets/images/close.svg"></ion-icon></ion-text>
+      </ion-buttons>
+ </ion-toolbar>
+ <div style="margin-top: 5%; text-align: center;">
+  <form [formGroup]="addBookmarkGroup" (ngSubmit)="addBookmark()">
+  <ion-input formControlName="bookmark" placeholder="Enter bookmark name" class="bookmark"
+  [clearInput]="true"></ion-input>
+  <div *ngIf="formErrors.bookmark" class="redColor" padding> {{ formErrors.bookmark }} </div>
+  </form>
+ </div>
+ <div style="margin-top: 5%; margin-bottom: 5%; text-align: center;">
+    <ion-button type="submit" color="success" (click)="addBookmark()">{{ button_name }}</ion-button>
+ </div>

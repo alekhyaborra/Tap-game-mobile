@@ -1,0 +1,16 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>map</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<div id="parent">
+  <div id='map'>
+      <app-map-menu *ngIf="isHistory == false" [isHistory]="isHistory" [toolbarButtonConf]= 'toolbarButtonConf' (selectedMapAction) = selectedMapAction($event)></app-map-menu>
+  </div>
+  <div id="map-back">
+    <ion-icon class="backarrow back-button-style" name="arrow-back" color="dark" size="large" (click)="goBack()">
+    </ion-icon>
+  </div>
+  <div id="map-close" class="search-close" (click)="closeAddressSearch();$event.stopPropagation()" *ngIf="addressSearchStatus"><ion-icon name="ios-close-circle-outline" size="large"></ion-icon></div>
+</div>
+
