@@ -22,7 +22,7 @@ export class WorkOrdersService {
 
   ) { }
 
-  getWorkOrders(url, taskId, formId, assignmentId, offset, searchBy, filter): Observable<any> {
+  getWorkOrders(url, taskId, formId, assignmentId, offset, searchBy, filter,date,fromDate,toDate): Observable<any> {
     const headers = this.restService.getHeadersForGet();
     return new Observable<any>(observer => {
       // if(filter != Constants.filter.saved && assignmentId != Constants.nullValue){ -> this commnted
@@ -31,7 +31,7 @@ export class WorkOrdersService {
         .subscribe(res => {
           if (res["status"] === Constants.offlineStatus) {
             let returnData;
-            this.queryProcessService.getDownloadedWO(taskId, formId, assignmentId, Constants.wOQueryLimit.limit, (offset-1)*Constants.wOQueryLimit.limit,searchBy,filter)
+            this.queryProcessService.getDownloadedWO(taskId, formId, assignmentId, Constants.wOQueryLimit.limit, (offset-1)*Constants.wOQueryLimit.limit,searchBy,filter,date,fromDate,toDate)
             .then((data) => {            
               const wO: any = [];
               let displayFields:any;

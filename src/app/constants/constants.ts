@@ -212,6 +212,8 @@ export class Constants {
         assigned: "Assigned",
         startDate: "Start Date",
         dueDate: "Due Date",
+        fromDate:"fromDate",
+        toDate:"toDate"
     }
 
     public static workOrderFilter = [
@@ -345,7 +347,8 @@ export class Constants {
         taskName: "name",
         displayValue: "displayValue",
         dueDate: "endDate",
-        sketching: "sketching"
+        sketching: "sketching",
+        AssignedRecordTime:"AssignedRecordTime"
     }
     public static userProfileTable = {
         table: "userProfileTable",

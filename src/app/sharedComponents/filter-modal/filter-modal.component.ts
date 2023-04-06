@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input, ViewChild } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Constants } from '../../constants/constants';
 
@@ -9,10 +9,18 @@ import { Constants } from '../../constants/constants';
 })
 export class FilterModalComponent implements OnInit {
 
+  
   filterElements = Constants.filter
   filterObject;
+  dateObject;
   selectedFilter;
   headerConstants = Constants.modalHeader;
+  fromDate;
+  toDate;
+  fromRecord;
+  
+  
+  
 
   constructor(
     public modalController: ModalController,
@@ -22,6 +30,10 @@ export class FilterModalComponent implements OnInit {
   ngOnInit() {
     this.filterObject = this.navParams.get("filterObject");
     this.selectedFilter = this.navParams.get("selectedFilter");
+    this.fromRecord = this.navParams.get('fromRecord')
+    
+    
+    console.log(this.filterObject)
   }
 
   close(){
@@ -29,7 +41,31 @@ export class FilterModalComponent implements OnInit {
   }
 
   applyFilter(){
+    if(this.fromDate || this.toDate){
+      this.modifyDate()
+    } 
+  
     this.modalController.dismiss(this.selectedFilter);
+    console.log(this.selectedFilter)
+    console.log(this.fromDate)
+    console.log(this.toDate)
+  }
+
+  modifyDate(){
+    if(this.fromDate && this.toDate ==  Constants.nullValue){
+      this.toDate = new Date()
+    } else if(this.fromDate ==  Constants.nullValue && this.toDate){
+      this.fromDate = this.toDate
+    }
+    let fdate = new Date(this.fromDate)
+    let tdate = new Date(this.toDate)
+    fdate.setDate(fdate.getDate()-1)
+    tdate.setDate(tdate.getDate()+1)
+    let nfdate = fdate.toISOString()
+    let ntdate = tdate.toISOString()
+    this.selectedFilter["fromDate"] = nfdate
+    this.selectedFilter["toDate"] = ntdate
+
   }
 
   clear(){
@@ -37,6 +73,11 @@ export class FilterModalComponent implements OnInit {
       recordsby : Constants.nullValue,
       sortby : Constants.nullValue
     };
+    if(this.fromDate && this.toDate){
+      this.fromDate = null
+      this.toDate = null
+    }
+
       this.modalController.dismiss(this.selectedFilter);
   }
 
@@ -53,5 +94,7 @@ export class FilterModalComponent implements OnInit {
     else
       this.selectedFilter.sortby = value;
   }
+
+  
 
 }

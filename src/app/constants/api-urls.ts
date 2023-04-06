@@ -9,7 +9,8 @@ export class ApiUrls {
      // public static host = "https://demo.fieldon.com";
     //  public static host="https://192.168.110.44:4534"
 
-      public static host = "https://192.168.110.44:4534";
+      // public static host = "https://192.168.110.44:4534";
+      public static host = "https://10.138.1.63:4534";
      //  public static host = "http://192.168.110.43:2136";
     // public static host = "http://192.168.110.43:2137";
     public static baseUrl = ApiUrls.host + '/api/v1';
@@ -23,7 +24,8 @@ export class ApiUrls {
     public static pwdCheckforChangePassword = ApiUrls.uniqUrl + '/pwdCheckforChangePassword';
     public static getTasks = '/mobileServices/workAssignments';
     public static getTaskRecords = "/mobileServices/fetchRecordsBasedOnTaskId";
-    public static getWorkOrders = ApiUrls.baseUrl+"/mobileServices/fetchWorkAssignmentRecords";
+    // public static getWorkOrders = ApiUrls.baseUrl+"/mobileServices/fetchWorkAssignmentRecords";
+    public static getWorkOrders = ApiUrls.baseUrl+"/mobileServices/fetchWorkAssignmentRecordss";
     public static getForms = "/mobileServices/fetchFormsforUser";
     public static getAssetForms = "/assets/fetchFormsforUser";
     public static getFormRecords = "";

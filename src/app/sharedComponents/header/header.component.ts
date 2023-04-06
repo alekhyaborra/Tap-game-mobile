@@ -47,6 +47,9 @@ export class HeaderComponent implements OnInit {
   @Output() public searchEvent=new EventEmitter;
   @Output()
   syncButton : EventEmitter<any> = new EventEmitter<any>();
+  @Input()
+  fromRecord;
+
 
   versionAlertMsg: string;
   constructor(

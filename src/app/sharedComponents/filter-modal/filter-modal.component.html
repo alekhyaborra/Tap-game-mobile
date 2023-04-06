@@ -31,6 +31,44 @@
         <ion-row class="filter-row">
           <div class="filter-item" *ngFor="let element of object.Elements,let i=index" [ngClass]="{'item-margin' : i!=0 , 'selected-filter' : selectedFilter.sortby == element }" (click)="selectFilterSort(element)">{{element}}</div>
         </ion-row>
+
+      </ion-label>
+    </ion-item>
+  
+  </div>
+  <div >
+    <ion-item *ngIf="selectedFilter.recordsby!=='Saved' && fromRecord">
+      <ion-label class="itemText" >
+        <ion-row>
+          {{filterElements.sortby}}
+        </ion-row>
+          <form (ngSubmit)="applyFilter()">
+            <ion-row >
+            <ion-col>
+              <ion-row>
+                fromDate
+              </ion-row>
+              <ion-row>
+                <input type="date" class="form-control"  [(ngModel)]="fromDate" name="fromDate"/>
+              </ion-row>
+            </ion-col>
+            <ion-col>
+              <ion-row>
+                toDate
+              </ion-row>
+              <ion-row>
+                <input type="date" class="form-control"  [(ngModel)]="toDate" name="toDate" />
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-row>
+            {{element.name}}
+          </ion-row>
+          <ion-row>
+            <input type="date" class="form-control" placeholder="{{element.value}}"
+            [(ngModel)]="element.value" name="{{element.name}}" [value]="element.value"/>
+          </ion-row> -->
+          </form>
       </ion-label>
     </ion-item>
   </div>

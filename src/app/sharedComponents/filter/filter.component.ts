@@ -12,6 +12,8 @@ import { Constants } from '../../constants/constants';
 export class FilterComponent implements OnInit {
 
   @Input()
+   fromRecord;
+  @Input()
   filterObject;
   @Input()
   selectedFilter;
@@ -38,7 +40,8 @@ export class FilterComponent implements OnInit {
       component: FilterModalComponent,
       componentProps:{
         filterObject : this.filterObject,
-        selectedFilter : this.selectedFilter
+        selectedFilter : this.selectedFilter,
+        fromRecord:this.fromRecord
       },
       cssClass:'common-filter-modal'
     });

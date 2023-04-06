@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Constants } from '../../constants/constants';
 import { WorkOrdersService } from './work-orders.service';
@@ -99,6 +99,10 @@ export class WorkOrdersPage implements OnInit {
   searchResultISO: any = null;
   searchResultIND: any = null;
   displayForEVForm = [];
+  fromDate: any;
+  toDate: any;
+  date: number;
+  fromRecord:boolean;
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -131,15 +135,16 @@ export class WorkOrdersPage implements OnInit {
     if ((this.route.snapshot.params.notificationId != "null" && this.route.snapshot.params.notificationId != undefined) && this.initCount == 1) {
       this.showRecordFromNotification();
     } else {
-      if (this.filterBy != Constants.nullValue) {
-        this.woWithFilterCall()
-      } else {
+      if (this.filterBy == Constants.nullValue && this.date == Constants.nullValue) {
         this.woWithoutFilterCall()
+      } else {
+        this.woWithFilterCall()
       }
 
     }
   }
   ngOnInit() {
+    this.fromRecord = true
     this.showSyncButton = false;
     this.route.paramMap.subscribe(params => {
       this.taskId = params.get('taskId');
@@ -546,8 +551,8 @@ export class WorkOrdersPage implements OnInit {
   }
 
   getWorkorderList(): any {
-    const url = ApiUrls.getWorkOrders + "/" + this.commonService.getUserInfo()._id + "/" + (this.assignmentId || Constants.nullValue) + "/" + (this.formId || Constants.nullValue) + "/" + (this.searchBy || Constants.nullValue) + "/" + (this.filterBy || Constants.nullValue) + "/" + this.limit + "/" + this.offset;
-    return this.woservice.getWorkOrders(url, this.taskId || Constants.nullValue, this.formId || Constants.nullValue, this.assignmentId || Constants.nullValue, this.offset++, this.searchBy, this.filterBy);
+    const url = ApiUrls.getWorkOrders + "/" + this.commonService.getUserInfo()._id + "/" + (this.assignmentId || Constants.nullValue) + "/" + (this.formId || Constants.nullValue) + "/" + (this.searchBy || Constants.nullValue) + "/" + (this.filterBy || Constants.nullValue) + "/" + this.limit + "/" + this.offset  + "/" + (this.fromDate || Constants.nullValue) + "/"  + (this.toDate || Constants.nullValue);
+    return this.woservice.getWorkOrders(url, this.taskId || Constants.nullValue, this.formId || Constants.nullValue, this.assignmentId || Constants.nullValue, this.offset++, this.searchBy, this.filterBy,this.date,this.fromDate,this.toDate);
   }
 
   getSavedWO(): any {
@@ -759,7 +764,19 @@ export class WorkOrdersPage implements OnInit {
   }
   filterByEvent(value) {
     this.selectedFilter = value;
-    this.filterBy = value.recordsby
+    if(value.fromDate && value.toDate){
+      this.date = 1
+      this.fromDate = value.fromDate
+      this.toDate = value.toDate
+      this.filterBy = value.recordsby
+      
+    }else{
+      this.fromDate = null
+      this.toDate = null
+      this.date = null
+      this.filterBy = value.recordsby
+    }
+   
     this.workOrders = [];
     this.callingFunction()
   }

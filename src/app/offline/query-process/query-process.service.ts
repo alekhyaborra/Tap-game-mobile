@@ -173,10 +173,10 @@ export class QueryProcessService {
     return this.queryService.getAssignments();
   }
 
-  getDownloadedWO(taskId, formId, assignmentId, limit, offset, searchBy, filter) {
-    if (searchBy != Constants.nullValue || filter != Constants.nullValue) {
+  getDownloadedWO(taskId, formId, assignmentId, limit, offset, searchBy, filter,date,fromDate,toDate) {
+    if (searchBy != Constants.nullValue || filter != Constants.nullValue || date!=Constants.nullValue) {
       // return  this.queryService.getDownloadedWO(taskId, formId, assignmentId, limit, offset);
-      return this.queryService.getDownloadedWOSearch(taskId, formId, assignmentId, limit, offset, searchBy, filter);
+      return this.queryService.getDownloadedWOSearch(taskId, formId, assignmentId, limit, offset, searchBy, filter,date,fromDate,toDate);
     } else {
       return this.queryService.getDownloadedWO(taskId, formId, assignmentId, limit, offset);
     }

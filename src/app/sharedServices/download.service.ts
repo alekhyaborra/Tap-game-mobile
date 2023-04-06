@@ -104,6 +104,7 @@ export class DownloadService {
     saveWOData[Constants.saveWO.displayValue] = data['data'][Constants.wODownloadKys.docs][i][data['data'][Constants.wODownloadKys.displayField]];
     saveWOData[Constants.saveWO.dueDate] = data['data'][Constants.wODownloadKys.docs][i][Constants.saveWO.dueDate] || Constants.nullValue;
     saveWOData[Constants.saveWO.insertDate] = new Date().setHours(0, 0, 0, 0);
+    saveWOData[Constants.saveWO.AssignedRecordTime] = data['data'][Constants.wODownloadKys.docs][i][Constants.saveWO.AssignedRecordTime]
     return saveWOData;
   }
 
