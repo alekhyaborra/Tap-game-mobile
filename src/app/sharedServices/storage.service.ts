@@ -1,31 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-//import { text } from '@angular/core/src/render3';
+
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  constructor(private storage: Storage) { }
-  
-  
-
-  storeUserInfo(userInfo) {
-    this.storage.set("userInfo", userInfo);
+  constructor(private storage: Storage) {
+    this.init();
   }
 
-  mapInfo(mapInfo) {
-    this.storage.set("mapInfo", mapInfo);
+   init() {
+     this.storage.create();
   }
-  appVersion:any;
 
-  storeVersionApp(version) {
-    this.appVersion = version
-    // this.storage.set('appVersion', version);
-   }
+  set(key: string, value: any) {
+     this.storage.set(key, value);
+  }
 
-   getStoreAppVersion() {
-     return this.appVersion
-    //  return  this.storage.get('appVersion');
-   }
+  get(key: string) {
+    const value = this.storage.get(key);
+    return value;
+  }
+
+  remove(key: string) {
+   this.storage.remove(key);
+  }
+
+  async clear() {
+    await this.storage.clear();
+  }
 }

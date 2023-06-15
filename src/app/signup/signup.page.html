@@ -1,0 +1,61 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Sign Up
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-content> -->
+  <div class="content">
+    <!-- <ion-list class="list">
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input type="text" [(ngModel)]="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">UserName</ion-label>
+        <ion-input type="text" [(ngModel)]="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-list> -->
+    <ion-card class="card">
+      <!-- <ion-card-header></ion-card-header> -->
+        <ion-list class="list">
+      <ion-item>
+        <ion-label position="floating">Name:</ion-label>
+        <!-- <ion-icon name="person-outline"></ion-icon> -->
+        <ion-input type="text" [(ngModel)]="name" placeholder="Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">UserName:</ion-label>
+        <!-- <ion-icon name="person-circle-outline"></ion-icon> -->
+        <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email:</ion-label>
+        <!-- <ion-icon name="mail-outline" color="blue"></ion-icon> -->
+        <ion-input type="email" [(ngModel)]="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password:</ion-label>
+        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
+        <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" (click)="submit()">Sign Up</ion-button>
+
+    </ion-card>
+  
+    <div class="redirect">Already has an account? <a (click)="redirect()"> signin</a></div>
+  </div>
+
+<!-- </ion-content> -->

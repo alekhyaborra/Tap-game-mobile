@@ -1,23 +1,19 @@
-<div class="dashboard-container">
-  <div class="main-div">
-    <ion-row class="row-one">
-      <ion-col>
-        <div class="action-container">
-          <img [src]="notificationIcon" class="action-icon" (click)="notifications()">
-          <img [src]="settingIcon" class="action-icon setting-icon" (click)="settings()">
-        </div>
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="tittle">
+      Welcome
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="auth-form">
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button (click)="register()" expand="block" color="primary">Register</ion-button>
+        <span class="divider line one-line">or</span>
+        <span class="already">Already a user?</span>
+        <ion-button (click)="login()" expand="block" color="danger">Sign In</ion-button>
       </ion-col>
     </ion-row>
-    <app-slider-container [taskCheck]="checkCountOfTask" (taskCountChecked)="entryCheck($event)" #slider></app-slider-container>
-  </div>
-  <div class="version-alert"  *ngIf="!isAppLatestVersion">
-    <ion-text color="warning"  class="version-alert-text">
-      {{displayProperties.versionUpdateAlertMsg}} 
-    </ion-text>
-  </div>
- 
-  <ion-row justify-content-center align-items-center class="main-action-row row-four">
-    <app-forms-tab class="tab-component margin-top-10px" (click)="gotoFormsList()"></app-forms-tab>
-    <app-task-tab class="tab-component" (click)="gotoTasksList()"></app-task-tab>
-  </ion-row>
-</div>
+  </ion-grid>
+</ion-content>

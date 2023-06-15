@@ -1,0 +1,31 @@
+<!-- <div class="parentDiv">
+  <div class="taps" id="text"> Total Taps {{taps}}</div>
+  <div id="text"> Taps left for your reward {{tapDiff}}</div>
+  <div id="text"> Taps left for this session {{tapCount}}</div>
+  <div  >
+      <img class="img" #img src="../../assets/tree.png" alt="" width="150" height="150" (click)="tap($event)" >
+  </div>
+</div> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>  </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <ion-item >
+    <h5 class="content">Total Taps: {{taps}} </h5>
+  </ion-item>
+  
+  <h6 class="tapDiff">Taps left for Gift Card: {{tapDiff}} </h6>
+  <h6 class="tapCount">Taps This Session: {{tapCount}} </h6>
+
+  <img class="img" #img src="../../assets/tree.png" alt="" width="150" height="150" (click)="tap($event)" >
+
+  
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>  </ion-title>
+  </ion-toolbar>
+</ion-footer>

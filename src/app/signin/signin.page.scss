@@ -1,0 +1,48 @@
+.card{
+    margin-top: 70%;
+    // margin-top: 30%;
+    width: 100%;
+    margin-left: 5%;
+    border-radius: 10px;
+    // position: absolute;
+    // top: 30%;
+    // left: 10%;
+}
+
+.content{
+    background-color:lightblue !important;
+
+    // background-image:url(../../assets/background.jpeg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-content: center;
+    height: 100%;
+    
+}
+
+.icon{
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.form{
+    height: 10%;
+}
+
+.redirect{
+    color: white;
+    margin-left: 50px;
+    // position: absolute;
+    // top: 60%;
+    // left: 15%;
+    
+}
+
+.forgotpassword{
+    margin-left: 60%;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.SignUp{
+    margin-left: 5px;
+}

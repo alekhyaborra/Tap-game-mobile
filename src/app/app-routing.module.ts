@@ -1,137 +1,44 @@
-// import { NgModule } from '@angular/core';
-// import { Routes, RouterModule } from '@angular/router';
-
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   
-  // {
-  //   path: 'page',
-  //   loadChildren: () => import('./pages/page/page.module').then( m => m.PagePageModule)
-  // },
-
-   {
-     path: 'login',
-     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-   },
-
-   {
-    path: 'changePassword/:username/:userType',
-    loadChildren: () => import('./change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
   },
-
+  {
+    path: 'signin',
+    loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },  {
+    path: 'show-hide-password',
+    loadChildren: () => import('./show-hide-password/show-hide-password.module').then( m => m.ShowHidePasswordPageModule)
   },
   {
-    path: 'blue-tooth-devices',
-    loadChildren: () => import('./blue-tooth-devices/blue-tooth-devices.module').then( m => m.BlueToothDevicesPageModule)
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
-  {
-    path: 'gps-tracking',
-    loadChildren: () => import('./gps-tracking/gps-tracking.module').then( m => m.GpsTrackingPageModule)
-  },
-
-  //  {
-  //    path: 'login',
-  //    loadChildren: './login/login.module#LoginPageModule'
-  //  },
-  // {
-  //   path: 'changePassword/:username/:userType',
-  //   loadChildren: './change-password/change-password.module#ChangePasswordPageModule'
-  // },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: './dashboard/dashboard.module#DashboardPageModule'
-  // },   
-  // { 
-  //   path: 'blue-tooth-devices', 
-  //   loadChildren: './blue-tooth-devices/blue-tooth-devices.module#BlueToothDevicesPageModule'
-  //  },
-  // { 
-  //   path: 'gps-tracking', loadChildren: './gps-tracking/gps-tracking.module#GpsTrackingPageModule' 
-  // },
-  
-
 
 
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes,
-    {
-    }),
-   
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule],
-  providers: [
-  ]
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const routes: Routes = [
-//   { path: '', redirectTo: 'login', pathMatch: 'full' },
-//   { 
-//     path: 'login', 
-//     loadChildren: './login/login.module#LoginPageModule' 
-//   },
-
-//   { 
-//     path: 'dashboard', 
-//     children:[
-//       {
-//         path:'',
-//         children:[
-//           {
-//             path:'',
-//             loadChildren:'./dashboard/dashboard.module#DashboardPageModule'
-//           },
-//           {
-//             path:'formsList',
-//             children:[
-//               {
-//                 path:'',
-//                 loadChildren:'./forms/forms-list/forms-list.module#FormsListPageModule'
-//               },{
-//                 path:'records',
-//                 children:[
-//                   {
-//                     path:'',
-//                     loadChildren:'./forms/records-list/records-list.module#RecordsListPageModule'
-//                   }
-//                 ]
-//               }
-//             ]
-//         }
-//       ]
-//       }
-//     ]
-//   }
-// ];
+export class AppRoutingModule { }

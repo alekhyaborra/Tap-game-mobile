@@ -1,6 +1,0 @@
-<div  *ngIf="dynamicFormControlRef?.dirty && dynamicFormControlRef?.errors" class="validation-message">
-  <div *ngIf="dynamicFormControlRef.errors?.required" class="alertColor">Required field</div>
-  <div *ngIf="dynamicFormControlRef.errors?.maxlength" class="alertColor">Maximum length is {{dynamicFormControlRef.errors.maxlength.requiredLength}} but you entered {{dynamicFormControlRef.errors.maxlength.actualLength}} </div>
-  <div *ngIf="dynamicFormControlRef.errors?.minlength" class="alertColor">Minimum length is {{dynamicFormControlRef.errors.minlength.requiredLength}} but you entered {{dynamicFormControlRef.errors.minlength.actualLength}} </div>
-  <div *ngIf="dynamicFormControlRef.errors?.pattern" class="alertColor">pattern does not match</div>
-</div>

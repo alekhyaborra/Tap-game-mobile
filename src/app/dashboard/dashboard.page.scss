@@ -1,139 +1,45 @@
-.main-div{
-    height: 40%;
-    background-image: url('../../assets/images/dashboard-background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-}
-.row-one{
-    height: 10%;
-}
-.row-four{
-    height: 40%;
-    overflow: auto;
-}
-.action-container{
-    margin-left: 75%;
-    margin-top: 5%;
-}
-.action-icon{
-    width: 25%;
-}
-.setting-icon{
-    margin-left: 30%;
-}
-.dashboard-container{
-    background-color: #F3F3F3;
-    height: 100%;
-}
-.main-action-row{
-    position: absolute;
-    width: 100%;    
-}
-.action-cord{
-    background: #FFFFFF;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    margin-left: 15px;
-    margin-right: 15px;
-    box-shadow: none;
-}
-.tab-component{
-    width: 100%;
-}
-.action-name-div{
-    // position: absolute;
-    margin-left: 10px;
-    margin-top: 10px;
-}
-.action-name{
-    color: black;
-}
-.action-info{
-    margin-top: 10px;
-    font-size: 13px;
-    color: #a0a2a5;
-}
-.action-avatar{
-    margin-top: 3px;
-    margin-left: -12px;
-}
-.row-two{
-    height: 20%;
-}
-.row-three{
-    height: 10%;
-}
-.percentage-text{
-    color: #FFFFFF;
-    font-size: 15px;
-    margin-left: 3%;
-    position: absolute;
-    margin-top: 2px;
-}
-.percentage-icons{
-    margin-left: 5%;
-}
-.percentage-text-container{
-    height: 25px;
-}
-.percentage-text-margin{
-    margin-top: 5%;
-}
-.percentage-text-row{
-    margin-top: 14%;
-    position: absolute;
-    width: 100%;
-}
-.total-percentage{
-    font-size: 30px;
-    color: #FFFFFF;
-    position: fixed;
-    left: 61%;
-    top: 0%;
-    margin-top: 30%;
-    width: 90px;
+.divider {
+    display: flex;
+    
+    &:before,
+    &:after {
+      content: "";
+      flex: 1;
+    }
+  }
+
+  .tittle{
+    margin-left: 25%;
+  }
+  
+  .line {
+    align-items: center;
+    margin: 1em -1em;
+    color: #cccccc;
+    
+    &:before,
+    &:after {
+      height: 1px;
+      margin: 0 1em;
+    }
+  } 
+  
+  .one-line {
+    &:before,
+    &:after {
+       background: #cccccc;
+    }
+  }
+  
+  .auth-form ion-grid,
+  .auth-form ion-row {
+    margin-top: 20%;
+    // height: 100%;
+    justify-content: center;
+  }
+  
+  .already {
+    display: block;
     text-align: center;
-}
-.chart-col{
-    margin-left: 35% !important;
-}
-.chart-row{
-    margin-top: 14%;
-    position: absolute;
-    width: 100%;
-}
-.text-ceenter{
-    text-align: center;
-}
-.chart-name{
-    position: absolute;
-    width: 100%;
-    margin-top: 7%;
-    font-size: 20px;
-    color: #FFFFFF;
-}
-.user-info{
-    height: 100%;
-    text-align: center;
-}
-.user-info-card{
-    color: #FFF;
-    box-shadow: none;
-}
-.font-size-30{
-    font-size: 30px;
-}
-.font-size-20{
-    font-size: 20px !important;
-}
-.chart-data-loader{
-    position: absolute;
-    width: 100%;
-    margin-top: 25%;
-    color: #FFFFFF;
-}
-.margin-top-35{
-    margin-top: 35% !important;
-}
+    padding-bottom: 10px;
+  }

@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24.211" height="24.211" viewBox="0 0 24.211 24.211">
-  <g id="Backward_arrow_small" data-name="Backward arrow small" transform="translate(0)">
-    <rect id="Rectangle_1464" data-name="Rectangle 1464" width="15.132" height="15.132" transform="translate(0 4.54)" fill="none"/>
-    <g id="Backward_arrow" data-name="Backward arrow">
-      <path id="Path_10" data-name="Path 10" d="M12.105,0,9.9,2.2l8.332,8.332H0v3.144H18.237L9.9,22.01l2.2,2.2L24.211,12.105Z" transform="translate(24.211 24.211) rotate(180)" fill="#fff"/>
-    </g>
-  </g>
-</svg>
