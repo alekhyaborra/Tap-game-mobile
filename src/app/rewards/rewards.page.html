@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-row>
+    <ion-col size="1.5" > <ion-icon name="arrow-back-sharp" size="large" class="icon" (click)="goback()"></ion-icon> </ion-col>
+    <ion-col>  <h4>Rewards</h4> </ion-col>
+  </ion-row>
+</ion-header>
+<!-- <ion-grid>
+  <ion-row>
+    <ion-col class="col">
+      <ion-card class="card"> 
+        <img src="../../assets/rewards_icons/amazon_updated.jpeg" width="150" height="150" (click)="presentModal()">
+        <ion-text class="text">500 Gift Coupon</ion-text>
+      </ion-card>
+    </ion-col>
+    <ion-col class="col">
+      <ion-card class="card">
+        <img src="../../assets/rewards_icons/bigbasket_updated.jpeg" width="150" height="150">
+        <ion-text class="text">500 Gift Coupon</ion-text>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col">
+      <ion-card class="card">
+         <img src="../../assets/rewards_icons/flipkart_updated.jpeg" width="150" height="150">
+         <ion-text class="text">500 Gift Coupon</ion-text>
+      </ion-card>
+    </ion-col>
+    <ion-col class="col">
+      <ion-card class="card">
+        <img src="../../assets/rewards_icons/mynthra_updated.jpeg" width="150" height="150">
+        <ion-text class="text">500 Gift Coupon</ion-text>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="col">
+      <ion-card class="card-sol">
+         <img src="../../assets/rewards_icons/solana_updated.jpeg" width="150" height="150">
+         <ion-text class="text-sol"> 10$ Gift Coupon</ion-text>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid> -->
+
+<ion-grid>
+  <ion-row style="overflow: auto;">
+    <ion-col *ngFor="let icon of icons; let i=index" size="6" class="col">
+      <ion-card class="card">
+        <div>
+          <img [src]="icons[i]" width="150" height="150" (click)="presentModal(i)">
+        </div>
+        <div>
+          <ion-text *ngIf="i!=4">500 Gift Coupon</ion-text>
+          <ion-text *ngIf="i==4">10$ Gift Coupon</ion-text>
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  
+</ion-grid>
+
+<app-tabs></app-tabs>

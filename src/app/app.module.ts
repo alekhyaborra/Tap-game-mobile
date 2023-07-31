@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Network } from '@awesome-cordova-plugins/network/ngx';
 
-
+ 
+import { CommonModule } from '@angular/common'; 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -32,6 +35,8 @@ import { AdmobService } from './sharedServices/admob.service';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
     IonicStorageModule.forRoot(),
     
     ],
@@ -44,7 +49,9 @@ import { AdmobService } from './sharedServices/admob.service';
     ToastController,
     Geolocation,
     AdMobFree,
-    AdmobService
+    AdmobService, 
+    Network
+
     
   ],
   bootstrap: [AppComponent]

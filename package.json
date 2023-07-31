@@ -1,5 +1,5 @@
 {
-  "name": "FieldonMobile",
+  "name": "Tap2Earn",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -21,9 +21,10 @@
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/android-permissions": "^6.1.0",
     "@awesome-cordova-plugins/core": "^6.1.0",
+    "@awesome-cordova-plugins/network": "^6.4.0",
     "@ionic-native/admob-free": "^5.36.0",
     "@ionic-native/core": "^5.36.0",
-    "@ionic/angular": "^6.1.9",
+    "@ionic/angular": "^6.7.5",
     "@ionic/cordova-builders": "^7.0.0",
     "@ionic/storage-angular": "^3.0.6",
     "cordova-plugin-androidx": "^3.0.0",
@@ -31,16 +32,17 @@
     "ionicons": "^6.0.3",
     "native-run": "^1.7.2",
     "rxjs": "~6.6.0",
-    "tslib": "^2.2.0",
+    "stream-browserify": "^3.0.0",
+    "tslib": "^2.6.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^14.0.0",
+    "@angular-devkit/build-angular": "^14.2.12",
     "@angular-eslint/builder": "~13.0.1",
     "@angular-eslint/eslint-plugin": "~13.0.1",
     "@angular-eslint/eslint-plugin-template": "~13.0.1",
     "@angular-eslint/template-parser": "~13.0.1",
-    "@angular/cli": "^14.0.0",
+    "@angular/cli": "^14.2.12",
     "@angular/compiler": "^14.0.0",
     "@angular/compiler-cli": "^14.0.0",
     "@angular/language-service": "^14.0.0",
@@ -61,6 +63,7 @@
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^5.0.0",
+    "cordova-plugin-network-information": "^3.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-promise-polyfill": "0.0.2",
@@ -99,8 +102,9 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-admob-free": {
-        "ADMOB_APP_ID": "ca-app-pub-2774171578242289~4522889660"
-      }
+        "ADMOB_APP_ID": "ca-app-pub-3484113740914724~8723676246"
+      },
+      "cordova-plugin-network-information": {}
     },
     "platforms": [
       "android"

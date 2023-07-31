@@ -1,0 +1,47 @@
+.container {
+    height: 98%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #28bae9;;
+
+  }
+
+  h1{
+    text-align: center;
+    margin-top: 10rem;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    margin-left: 40%;    
+    padding: 10px 20px;
+    background-color: #666 !important;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

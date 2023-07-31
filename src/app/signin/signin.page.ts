@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { StorageService } from '../sharedServices/storage.service';
 import {apiUrls} from '../../app/constants/api-urls';
+import {AlertServiceService} from '../sharedServices/alert-service.service'
 
 
 @Component({
@@ -17,7 +18,7 @@ export class SigninPage {
   password: string="";
   profileIcon = "assets/Profile.svg";
   lock = "assets/Lock.svg";
-  constructor(private http: HttpClient,private navCtrl: NavController,private router:Router,private storage:StorageService){}
+  constructor(private http: HttpClient,private navCtrl: NavController,private router:Router,private storage:StorageService,private alertService:AlertServiceService){}
 
   signIn() {
     
@@ -39,10 +40,27 @@ export class SigninPage {
     responseData.subscribe((res:any)=>{
       console.log(res)
       if(res.status == 200){
-            this.storage.set("userInfo",res.data)
-            console.log(res.data)
-            this.router.navigate(["home"])
+        this.storage.set("userInfo", res.data)
+        setTimeout(() => {
+          console.log(res.data)
+          this.router.navigate(["home"])
+          this.storage.currentPath = 'home';
+        }, 1000);
+        // } else if(res.status == 400){
+          //   this.alertService.presentAlert('UserName and Password are required')
+          // }else{
+          //   this.alertService.presentAlert('Invalid credentials')
+
           }
+          
+    },
+    error=>{
+      console.log(error)
+      if(error.status==400){
+        this.alertService.presentAlert('UserName and Password are required')
+      }else{
+        this.alertService.presentAlert('Invalid credentials')
+      }
     })
   }
   redirect(){

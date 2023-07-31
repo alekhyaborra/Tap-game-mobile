@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Contact Us</h1>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" id="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" formControlName="email" id="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea formControlName="description" id="description" class="form-control" required></textarea>
+    </div>
+    <button type="submit"  class="btn btn-primary">Submit</button>
+  </form>
+
+  click here for <a (click)="navigate()"> how to play</a>
+</div>
+
+
+<app-tabs></app-tabs>
+

@@ -1,0 +1,39 @@
+.card{
+    // height: 100%;
+    // width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+.col{
+    height: 10%;
+    width: 10%;
+}
+
+.card-sol{
+    height: 100%;
+    width: 50%;
+}
+
+.text{
+    margin-left: 5px;
+}
+
+.text-sol{
+    margin-left: 10px;
+}
+
+.icon{
+    margin-top: 10px;
+}
+
+.modal-component{
+    .modal-content {
+        height: 50%;
+        position: absolute; 
+        top: 25%;
+        display: block !important; 
+    }
+}

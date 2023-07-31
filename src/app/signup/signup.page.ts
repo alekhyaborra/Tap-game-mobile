@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {apiUrls} from '../../app/constants/api-urls';
+import {AlertServiceService} from '../sharedServices/alert-service.service'
+
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +17,7 @@ export class SignupPage {
   email: string="";
   password: string="";
 
-  constructor(private http: HttpClient, private navCtrl: NavController,private router:Router) {}
+  constructor(private http: HttpClient, private navCtrl: NavController,private router:Router,private alertService:AlertServiceService) {}
 
   submit() {
     const body = {
@@ -35,11 +37,26 @@ export class SignupPage {
     // );
 
 
-    this.http.post(apiUrls.register, body).subscribe(((response: any) => {
-      console.log(response);
-      // this.navCtrl.navigateForward('/home');
-      this.router.navigate(["signin"])
-    }))
+    this.http.post(apiUrls.register, body).subscribe((res: any) => {
+      console.log(res);
+      if(res.status==200){
+        this.alertService.presentToast('User registered successfully')
+        this.router.navigate(["signin"])
+      
+      // } else if(res.status==409){
+      //   this.alertService.presentAlert('Email already registered')
+      // } else if(res.status == 400){
+      //   this.alertService.presentAlert('Missing required fields')
+      }
+    },
+    error=>{
+      console.log(error)
+      if(error.status==409){
+        this.alertService.presentAlert('Email already registered')
+      }else if(error.status==400){
+        this.alertService.presentAlert('Missing required fields')
+      }
+    })
   }
   redirect(){
     this.router.navigate(["signin"])

@@ -1,0 +1,27 @@
+.ripple-parent {
+    position: relative;
+    overflow: hidden;
+  
+    border: 1px solid #ddd;
+  }
+
+  .rounded-rectangle {
+    background-color: lightblue;
+    width: 90%;
+    height: 10vh;
+    padding: 15px;
+    border-radius: 8px;
+    margin-left: 3vh;
+  }
+
+.main-div{
+    overflow: auto;
+    height: 85%;
+    position: relative;
+    top: -3%;
+}
+
+.text{
+  color: black;
+  font-size: medium;
+}

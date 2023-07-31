@@ -6,6 +6,9 @@ import { Storage } from '@ionic/storage';
 })
 export class StorageService {
 
+  public currentPath = '';
+  public dailyCount;
+  public tapCount;
   constructor(private storage: Storage) {
     this.init();
   }

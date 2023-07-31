@@ -1,11 +1,3 @@
-<!-- <div class="parentDiv">
-  <div class="taps" id="text"> Total Taps {{taps}}</div>
-  <div id="text"> Taps left for your reward {{tapDiff}}</div>
-  <div id="text"> Taps left for this session {{tapCount}}</div>
-  <div  >
-      <img class="img" #img src="../../assets/tree.png" alt="" width="150" height="150" (click)="tap($event)" >
-  </div>
-</div> -->
 
 <ion-header>
   <ion-toolbar>
@@ -18,14 +10,54 @@
   </ion-item>
   
   <h6 class="tapDiff">Taps left for Gift Card: {{tapDiff}} </h6>
-  <h6 class="tapCount">Taps This Session: {{tapCount}} </h6>
+  <h6 class="tapCount">Taps This Session: {{dailyCount ? dailyCount : 'Loading...'}} </h6>
 
   <img class="img" #img src="../../assets/tree.png" alt="" width="150" height="150" (click)="tap($event)" >
+  <!-- <ion-button (click)="click()"> button</ion-button> -->
 
   
 </ion-content>
-<ion-footer>
+ <!-- <ion-footer>
   <ion-toolbar>
     <ion-title>  </ion-title>
+
+    <ion-row>
+      <ion-col class="rewardsIcon" (click)="rewards()">
+        <ion-list lines="none">
+          <ion-item>
+            <img src="../../assets/rewards_icons/reward_icon.jpeg" width="30" height="30">
+          </ion-item>
+          <ion-item class="text-item">
+            <ion-text class="text">Rewards</ion-text>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col class="historyIcon" (click)="history()">
+        <img src="../../assets/history_icon.jpeg" width="30" height="30">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
-</ion-footer>
+</ion-footer>  -->
+
+<app-tabs></app-tabs>
+
+<!-- <div>
+    <ion-tabs (ionTabsDidChange)="tabChanged($event)">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button >
+        <ion-icon name="home"></ion-icon>
+        Home
+      </ion-tab-button>
+      <ion-tab-button tab="rewards">
+        <ion-icon name="gift"></ion-icon>
+        Rewards
+      </ion-tab-button>
+      <ion-tab-button >
+        <ion-icon name="book"></ion-icon>
+        History
+      </ion-tab-button>
+    
+    </ion-tab-bar>
+  </ion-tabs>
+</div> -->
+

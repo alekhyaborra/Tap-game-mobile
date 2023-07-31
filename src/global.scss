@@ -20,76 +20,42 @@
   background: #2b769a;
   opacity: 0.9 !important;
 }
-canvas-whiteboard {
-    display: block;
-    height: 100vh;
+
+
+
+// .modalComponent{
+//   height: 40%;
+
+//   &::part(content){
+      
+//     --backdrop-opacity: 10;
+//       position: absolute;
+//       top: 60%;
+//       display: block;
+//       }
+// }
+
+
+// .modalComponent{
+//   height: 40%;
+//   --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+//   --backdrop-opacity: 10;
+//   position: absolute;
+//   top: 60%;
+//   // display: block;
+
+// }
+
+ion-modal {
+  --height: 40%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal{
+  ::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 2;
   }
-  .canvas-whiteboard-shape-selector-wrapper {
-    width: 100% !important;
-    margin-left: -6px !important;
-}
-  .canvas_whiteboard_buttons {
-    position: absolute !important;
-    // width:85% !important;
-    top: 0;
-    /* width: 100%; */
-    text-align: center !important;
-    margin-top: -9px !important;
-}
-  .canvas_whiteboard_buttons{
-    padding: 5px;
-    padding-top: 16px;
-      }
-  .canvas_wrapper_div{
-    margin-top: -1px !important;
-
-  }
-
-.canvas-whiteboard-shape-preview-canvas {
-  cursor: pointer;
-  margin-top: 15px !important;
-}
-.canvas-whiteboard-shape-selector-wrapper {
-  display: block !important;
-  padding: 4px !important;
-  margin-top: 47px !important;
-  width: 50% !important;
-  border: 1px solid #afafaf !important;
-  margin-left: 25% !important;
-  position: absolute !important;
-}
-.canvas-whiteboard-shape-preview-canvas {
-  cursor: pointer;
-  height: 26px;
-  width: 29px;
-}
-.canvas-whiteboard-colorpicker-input {
-  height: 27px !important;
-}
-.canvas-whiteboard-shape-preview-canvas {
-  cursor: pointer;
-  margin-left: 12px !important;
-}
-
-.mapInteraction {
-  position: absolute;
-  margin-top: 80%;
-  --max-height: 100%;
-  --max-width: 100%;
-  --border-radius: 10px;
-}
-
-.ion-modal{
-   --background: rgba(44, 39, 45, 0.2);
-     //  &::part(content){
-      // backdrop-filter:blur(6px);
-      // }
-       ion-content{
-         --background:transparent;
-         --padding-top:25vh;
-         --padding-start:20px;
-         --padding-end:20px;
-       }
-
 }
 

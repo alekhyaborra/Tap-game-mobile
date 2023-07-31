@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>history</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-list lines="none">
+  <ion-card  *ngFor="let item of items">
+    <ion-item>
+      {{item.rewardDate}}
+    </ion-item>
+    <ion-item>
+      {{item.rewardTime}}
+    </ion-item>
+    <ion-item>
+      {{item.rewardType}}
+    </ion-item>
+
+  </ion-card>
+
+</ion-list> -->
+
+<div class="main-div">
+  
+    <ion-card class=" rounded-rectangle" *ngFor="let item of items">
+      <!-- <ion-ripple-effect> -->
+      <div class="text">{{item.rewardType}}</div>
+      <p>{{item.rewardDate}} at {{item.rewardTime}}</p>
+    <!-- </ion-ripple-effect> -->
+
+    </ion-card>
+</div>
+
+<app-tabs></app-tabs>
+
+
