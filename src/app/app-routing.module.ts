@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'how-to-play',
     loadChildren: () => import('./how-to-play/how-to-play.module').then( m => m.HowToPlayPageModule)
+  },
+  {
+    path: 'share',
+    loadChildren: () => import('./share/share.module').then( m => m.SharePageModule)
   }
 
 

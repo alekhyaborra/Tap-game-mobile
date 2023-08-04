@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import {apiUrls} from '../../constants/api-urls';
 import { StorageService } from '../../sharedServices/storage.service';
 import { Router } from '@angular/router';
+import { AlertServiceService } from 'src/app/sharedServices/alert-service.service';
 
 
 
@@ -17,14 +18,15 @@ export class ModalComponent implements OnInit {
   rewardEmail = "";
   userInfo: any;
   email:string = '';
-
-  constructor(private modalCtrl: ModalController,private http: HttpClient,private storage:StorageService,private router:Router) { }
+  reward:string;
+  address:string= "";
+  constructor(private modalCtrl: ModalController,private http: HttpClient,private storage:StorageService,private router:Router,private alertService:AlertServiceService) { }
 
   ngOnInit() {
     this.storage.get("userInfo").then(data=>{
       this.userInfo=data
     })
-
+    this.reward = this.storage.reward
   }
 
   cancel(){
@@ -45,6 +47,9 @@ export class ModalComponent implements OnInit {
     // }))
     this.http.post(apiUrls.sendEmail,body).subscribe((res:any)=>{
       console.log(res)
+      if(res.status = 200){
+        this.alertService.presentAlert(`You just placed a Withdrawl for ${this.reward}.You will receive your giftcard in 15 days`)
+      }
     })
     console.log(body)
   }

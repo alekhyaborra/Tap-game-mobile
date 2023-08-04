@@ -72,7 +72,8 @@ export class HomePage implements OnInit,OnDestroy{
         }
         console.log(res)
         this.tapsDiff()
-
+        this.storage.dailyCount = this.dailyCount;
+        this.storage.tapCount = this.taps;
    
         // if(!this.tapCount){
         //   this.tapCount = 100000
@@ -84,6 +85,7 @@ export class HomePage implements OnInit,OnDestroy{
       
 
     })
+    console.log('welcome')
    
   }
 
@@ -148,10 +150,10 @@ export class HomePage implements OnInit,OnDestroy{
     if(this.dailyCount !==0){
       this.taps = this.taps+1;
       if(this.taps%20==0){
-        this.admob.showInterstitialAd();
+        // this.admob.showInterstitialAd();
       }
       if(this.taps%10==0){
-          this.admob.showBannerAd();
+          // this.admob.showBannerAd();
        }
       this.tapsDiff()
       if((this.tapDiff%1000000) == 0){

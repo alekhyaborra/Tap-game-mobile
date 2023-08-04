@@ -17,7 +17,7 @@ export class AdmobService {
     // isTesting: true, // Remove in production
     autoShow: false,
     // id: "ca-app-pub-3940256099942544/1033173712"
-    id: "ca-app-pub-3484113740914724/1730892485"
+    id: "ca-app-pub-1641147784772929/3808415004"
 
   };
 
@@ -39,7 +39,7 @@ export class AdmobService {
       autoShow: true,
       bannerAtTop: false,
       // id: "ca-app-pub-3940256099942544/6300978111"
-      id: "ca-app-pub-3484113740914724/9852925086"
+      id: "ca-app-pub-1641147784772929/2892850783"
   };
   this.admobFree.banner.config(bannerConfig);
 

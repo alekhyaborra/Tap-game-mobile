@@ -25,7 +25,7 @@ import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions
 import { HttpClientModule } from '@angular/common/http';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
 import { AdmobService } from './sharedServices/admob.service';
-
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx'
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -50,7 +50,8 @@ import { AdmobService } from './sharedServices/admob.service';
     Geolocation,
     AdMobFree,
     AdmobService, 
-    Network
+    Network,
+    SocialSharing
 
     
   ],

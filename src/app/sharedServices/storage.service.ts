@@ -9,6 +9,7 @@ export class StorageService {
   public currentPath = '';
   public dailyCount;
   public tapCount;
+  public reward;
   constructor(private storage: Storage) {
     this.init();
   }

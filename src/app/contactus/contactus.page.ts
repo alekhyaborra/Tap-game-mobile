@@ -37,6 +37,7 @@ export class ContactusPage implements OnInit {
       console.log(this.contactForm)
       // Replace this code with your desired form submission logic
       this.alertService.presentAlert("Please fill all the fields")
+
       console.log('alert received successfully!');
     } else{
       const body = {
@@ -46,7 +47,12 @@ export class ContactusPage implements OnInit {
       }
       this.http.post(apiUrls.contact,body).subscribe((res:any)=>{
         console.log(res)
+        if(res.status == 200){
+          this.alertService.presentAlert("Your query has been submitted. We'll get back to you in 24-48 hrs")
+          this.contactForm.reset()
+        }
       })     
+      
        console.log(this.contactForm)
     }
   }
@@ -56,3 +62,5 @@ export class ContactusPage implements OnInit {
   }
 
 }
+
+// Your query has been submitted. We'll get back to you in 24-48 hrs

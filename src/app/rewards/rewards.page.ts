@@ -80,6 +80,7 @@ export class RewardsPage implements OnInit {
       reward:this.rewards[i],
       email:this.userInfo.email
     }
+    this.storage.reward = this.rewards[i]
     this.http.post(apiUrls.rewardDetails,body).subscribe((res:any)=>{
       console.log(res)
     })
